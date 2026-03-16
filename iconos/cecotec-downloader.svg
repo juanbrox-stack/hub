@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect x="12" y="12" width="232" height="232" rx="48" fill="#faf9f5" stroke="#141413" stroke-width="6"/>
+  <g stroke="#141413" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- File -->
+    <path d="M80 64h64l32 32v96H80V64z" fill="#3eb1c8"/>
+    <path d="M144 64v32h32" fill="none"/>
+    <!-- Download arrow -->
+    <path d="M128 96v64" />
+    <path d="M108 140l20 20 20-20" />
+    <!-- Tray -->
+    <path d="M72 192h112" />
+    <path d="M84 192v-18h88v18" fill="none"/>
+  </g>
+</svg>

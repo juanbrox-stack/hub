@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect x="12" y="12" width="232" height="232" rx="48" fill="#faf9f5" stroke="#141413" stroke-width="6"/>
+  <g stroke="#141413" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Bars -->
+    <rect x="62" y="132" width="28" height="72" rx="8" fill="#3eb1c8"/>
+    <rect x="102" y="112" width="28" height="92" rx="8" fill="#3eb1c8"/>
+    <rect x="142" y="148" width="28" height="56" rx="8" fill="#3eb1c8"/>
+    <!-- Up arrow -->
+    <path d="M64 106l34-26 30 20 44-34" fill="none"/>
+    <path d="M178 66v26h-26" fill="none"/>
+    <!-- Trophy (simple) -->
+    <path d="M106 74h44v18c0 16-10 28-22 28s-22-12-22-28V74z" fill="#3eb1c8"/>
+    <path d="M94 80h12c0 16-6 28-18 28h-6" fill="none"/>
+    <path d="M162 80h-12c0 16 6 28 18 28h6" fill="none"/>
+    <path d="M118 120v16h20v-16" fill="none"/>
+    <path d="M108 152h40" fill="none"/>
+  </g>
+</svg>

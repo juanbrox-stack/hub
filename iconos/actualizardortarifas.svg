@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect x="12" y="12" width="232" height="232" rx="48" fill="#faf9f5" stroke="#141413" stroke-width="6"/>
+  <g stroke="#141413" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Price tag -->
+    <path d="M78 84h62l38 38-66 66-34-34V84z" fill="#3eb1c8"/>
+    <circle cx="108" cy="114" r="8" fill="#faf9f5"/>
+    <!-- Refresh arrows -->
+    <path d="M168 84c18 10 30 30 28 52" fill="none"/>
+    <path d="M198 136l-16-6 10-14" fill="none"/>
+    <path d="M88 176c-18-10-30-30-28-52" fill="none"/>
+    <path d="M58 124l16 6-10 14" fill="none"/>
+    <!-- Small grid hint -->
+    <path d="M92 170h44" fill="none"/>
+    <path d="M92 154h44" fill="none"/>
+    <path d="M92 138h44" fill="none"/>
+  </g>
+</svg>

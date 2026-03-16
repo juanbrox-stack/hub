@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect x="12" y="12" width="232" height="232" rx="48" fill="#faf9f5" stroke="#141413" stroke-width="6"/>
+  <g stroke="#141413" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="88" r="10" fill="#3eb1c8"/>
+    <line x1="128" y1="98" x2="86" y2="126"/>
+    <line x1="128" y1="98" x2="170" y2="126"/>
+    <line x1="128" y1="98" x2="128" y2="124"/>
+  </g>
+  <g stroke="#141413" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="#3eb1c8">
+    <!-- Store left -->
+    <rect x="56" y="126" width="56" height="72" rx="10"/>
+    <path d="M56 142h56" fill="none"/>
+    <path d="M60 142l8-14h40l8 14" fill="#3eb1c8"/>
+    <rect x="74" y="160" width="20" height="38" rx="6" fill="#faf9f5"/>
+    <!-- Store center -->
+    <rect x="100" y="128" width="56" height="70" rx="10"/>
+    <path d="M100 144h56" fill="none"/>
+    <path d="M104 144l8-14h40l8 14" fill="#3eb1c8"/>
+    <rect x="118" y="162" width="20" height="36" rx="6" fill="#faf9f5"/>
+    <!-- Store right -->
+    <rect x="144" y="126" width="56" height="72" rx="10"/>
+    <path d="M144 142h56" fill="none"/>
+    <path d="M148 142l8-14h40l8 14" fill="#3eb1c8"/>
+    <rect x="162" y="160" width="20" height="38" rx="6" fill="#faf9f5"/>
+  </g>
+</svg>

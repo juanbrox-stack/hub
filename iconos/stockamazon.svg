@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect x="12" y="12" width="232" height="232" rx="48" fill="#faf9f5" stroke="#141413" stroke-width="6"/>
+  <g stroke="#141413" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Box -->
+    <path d="M78 112l50-26 50 26v72l-50 26-50-26v-72z" fill="#3eb1c8"/>
+    <path d="M78 112l50 26 50-26" />
+    <path d="M128 138v72" />
+    <!-- Barcode -->
+    <path d="M64 204h10" />
+    <path d="M80 204h6" />
+    <path d="M92 204h12" />
+    <path d="M110 204h6" />
+    <path d="M122 204h14" />
+    <path d="M142 204h6" />
+    <path d="M154 204h12" />
+    <path d="M172 204h6" />
+    <path d="M184 204h10" />
+  </g>
+</svg>

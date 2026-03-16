@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect x="12" y="12" width="232" height="232" rx="48" fill="#faf9f5" stroke="#141413" stroke-width="6"/>
+  <g stroke="#141413" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- New box -->
+    <path d="M72 120l56-30 56 30v74l-56 30-56-30v-74z" fill="#3eb1c8"/>
+    <path d="M72 120l56 30 56-30" />
+    <path d="M128 150v74" />
+    <!-- Plus badge -->
+    <circle cx="188" cy="78" r="22" fill="#faf9f5"/>
+    <path d="M188 66v24" />
+    <path d="M176 78h24" />
+  </g>
+</svg>

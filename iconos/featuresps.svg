@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect x="12" y="12" width="232" height="232" rx="48" fill="#faf9f5" stroke="#141413" stroke-width="6"/>
+  <g stroke="#141413" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Checklist card -->
+    <rect x="64" y="70" width="128" height="116" rx="16" fill="#3eb1c8"/>
+    <path d="M88 104l10 10 18-22" />
+    <path d="M124 110h44" />
+    <path d="M88 136l10 10 18-22" />
+    <path d="M124 142h44" />
+    <!-- Sliders -->
+    <path d="M78 200h100" />
+    <circle cx="118" cy="200" r="10" fill="#faf9f5"/>
+    <path d="M78 222h100" />
+    <circle cx="156" cy="222" r="10" fill="#faf9f5"/>
+  </g>
+</svg>
