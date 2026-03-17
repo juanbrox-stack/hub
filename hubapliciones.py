@@ -23,7 +23,7 @@ apps = [
     {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación del fichero de subida a Herramientas de características técnicas en PrestaShop, cruza incompletas con PIM o fichero con datos válidos."},
     {"nombre": "Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico y organización de categorías de productos de categorías Amazon vs PS."},
     {"nombre": "PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Creación del fichero de subida de novedades a PrestaShop."},
-    {"nombre": "Stock Amazon", "url": "https://stockamazon.streamlit.app", "icon": "stockamazon.svg", "desc": "EN BETA. Ya genera el fichero pero habría que hacer una comparativa con fichero manual y ver las condiciones de las plantillas. Control de inventario y disponibilidad en Amazon Seller."},
+    {"nombre": "Stock Amazon", "url": "https://stockamazon.streamlit.app", "icon": "stockamazon.svg", "desc": "Creación de fichero para actualizar stock en Amazon Seller."},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos de unidad nueva automatizado"}
 ]
 
