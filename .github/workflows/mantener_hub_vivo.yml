@@ -1,0 +1,15 @@
+name: Mantener Hub Turaco Vivo
+
+on:
+  schedule:
+    # Se ejecuta cada 4 días a las 08:00 UTC
+    - cron: '0 8 */4 * *'
+  workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub
+
+jobs:
+  ping_hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hacer Ping al Hub de Aplicaciones
+        run: |
+          curl -I https://appsmarketplaces.streamlit.app/
