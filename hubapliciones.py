@@ -46,7 +46,7 @@ st.markdown("---")
 if apps_filtradas:
     cols = st.columns(3)
     for i, app in enumerate(apps_filtradas):
-        with cols[i % 3]:
+        with cols[i % 4]:
             with st.container(border=True):
                 # Renderizar icono SVG
                 svg_html = render_svg(f"iconos/{app['icon']}")
