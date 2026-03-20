@@ -13,7 +13,7 @@ def get_svg_base64(svg_path):
     except FileNotFoundError:
         return None
 
-# Datos de las aplicaciones
+# Datos de las aplicaciones (Actualizado con Seguimientos Amazon)
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "Business Intelligence de pedidos, análisis por marketplaces y año.", "color": "#e3f2fd"},
     {"nombre": "50 Top Ventas ES", "url": "https://50topventases.streamlit.app", "icon": "50topventases.svg", "desc": "Creación del fichero para enviar el top ventas semanal de productos líderes.", "color": "#f1f8e9"},
@@ -31,10 +31,11 @@ apps = [
         "has_step_prior": True,
         "prior_url": "https://convertirexcels.streamlit.app/"
     },
+    {"nombre": "Seguimientos Amazon", "url": "https://seguimientosamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Herramienta para el seguimiento y control de pedidos/envíos en Amazon.", "color": "#eceff1"},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos automatizado.", "color": "#fbe9e7"}
 ]
 
-# Estilos CSS globales (Botones azules y fuentes)
+# Estilos CSS globales
 st.markdown("""
     <style>
     div.stButton > button {
@@ -48,18 +49,18 @@ st.markdown("""
     }
     div.stButton > button:hover {
         background-color: #0056b3 !important;
-        border: none !important;
     }
-    /* Estilo para las tarjetas */
     .app-card {
         padding: 25px;
         border-radius: 15px;
         border: 1px solid #e0e0e0;
         text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+        height: 250px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -75,22 +76,19 @@ if apps_filtradas:
     cols = st.columns(3)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 3]:
-            # Encabezado de la tarjeta con color e icono
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
-            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="70" style="margin-bottom:15px;"/>' if b64_icon else "🖼️"
+            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="60" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
             
-            # Dibujamos el contenedor de color que incluye el texto
+            # Contenedor de color
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
-                    <div style="flex-grow: 1;">
-                        {icon_html}
-                        <h3 style="color: #333; margin-top:0;">{app['nombre']}</h3>
-                        <p style="color: #555; font-size: 0.9rem; min-height: 60px;">{app['desc']}</p>
-                    </div>
+                    {icon_html}
+                    <h3 style="color: #333; margin: 0; font-size: 1.2rem;">{app['nombre']}</h3>
+                    <p style="color: #555; font-size: 0.85rem; margin-top: 10px; line-height: 1.2;">{app['desc']}</p>
                 </div>
                 """, unsafe_allow_html=True)
             
-            # Los botones se ponen justo debajo del markdown dentro de la misma columna
+            # Botones
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1:
