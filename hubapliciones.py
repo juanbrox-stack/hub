@@ -25,6 +25,7 @@ apps = [
     {"nombre": "PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Creación del fichero de subida de novedades a PrestaShop."},
     {"nombre": "Stock Amazon", "url": "https://stockamazon.streamlit.app", "icon": "stockamazon.svg", "desc": "Creación de fichero para actualizar stock en Amazon Seller. IMPORTANTE: Todos los ficheros deben estar en formato .xlsx"},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos de unidad nueva automatizado"}
+{"nombre": "Convertidor a Excel", "url": "https://convertirexcels.streamlit.app/", "icon": "unidadnueva.svg", "desc": "Convierte ficheros .csv, .txt o .json en fichero Excel"}
 ]
 
 # --- INTERFAZ ---
