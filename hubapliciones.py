@@ -18,22 +18,28 @@ def render_svg(svg_path):
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "Business Intelligence de pedidos, análisis por marketplaces y año. Filtros comparativos mes a mes"},
     {"nombre": "50 Top Ventas ES", "url": "https://50topventases.streamlit.app", "icon": "50topventases.svg", "desc": "Creación del fichero para enviar el top ventas semanal de productos líderes en el mercado español."},
-    {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, sube la tarifa actual en xls y su actualización, genera el fichero con la tarifa completa."},
+    {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, sube la tarifa actual en xls y su actualización."},
     {"nombre": "Cecotec Downloader", "url": "https://cecotec-downloader.streamlit.app", "icon": "cecotec-downloader.svg", "desc": "Herramienta de descarga de catálogos y datos de las web de Cecotec por países."},
-    {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación del fichero de subida a Herramientas de características técnicas en PrestaShop, cruza incompletas con PIM o fichero con datos válidos."},
-    {"nombre": "Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico y organización de categorías de productos de categorías Amazon vs PS."},
+    {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación del fichero de subida de características técnicas en PrestaShop cruzando datos."},
+    {"nombre": "Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico y organización de categorías de productos Amazon vs PS."},
     {"nombre": "PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Creación del fichero de subida de novedades a PrestaShop."},
-    {"nombre": "Stock Amazon", "url": "https://stockamazon.streamlit.app", "icon": "stockamazon.svg", "desc": "Creación de fichero para actualizar stock en Amazon Seller. IMPORTANTE: Todos los ficheros deben estar en formato .xlsx"},
-    {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos de unidad nueva automatizado"}
+    {
+        "nombre": "Stock Amazon", 
+        "url": "https://stockamazon.streamlit.app", 
+        "icon": "stockamazon.svg", 
+        "desc": "Actualización de stock en Amazon Seller. IMPORTANTE: Los ficheros deben ser .xlsx",
+        "has_step_prior": True, # Marcador para lógica especial
+        "prior_url": "https://convertirexcels.streamlit.app/",
+        "prior_icon": "cecotec-downloader.svg" # Usamos el icono que pediste
+    },
+    {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos automatizado"}
 ]
 
 # --- INTERFAZ ---
 st.title("🚀 Panel Central de Aplicaciones")
 
-# Barra de búsqueda
 search_query = st.text_input("🔍 Buscar aplicación por nombre o descripción...", "").lower()
 
-# Filtrado lógico
 apps_filtradas = [
     app for app in apps 
     if search_query in app["nombre"].lower() or search_query in app["desc"].lower()
@@ -41,31 +47,36 @@ apps_filtradas = [
 
 st.markdown("---")
 
-# Renderizado de la cuadrícula
 if apps_filtradas:
     cols = st.columns(3)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 3]:
             with st.container(border=True):
-                # Renderizar icono SVG
+                # Renderizar icono principal
                 svg_html = render_svg(f"iconos/{app['icon']}")
                 if svg_html:
                     st.markdown(svg_html, unsafe_allow_html=True)
                 else:
-                    st.center("🖼️") # Placeholder si falta el archivo
+                    st.markdown("<h1 style='text-align: center;'>🖼️</h1>", unsafe_allow_html=True)
                 
                 st.subheader(app['nombre'])
                 st.write(app['desc'])
                 
-                # Botón con link
-                st.link_button("Abrir Aplicación", app['url'], use_container_width=True)
+                # Lógica especial para Amazon + Convertidor
+                if app.get("has_step_prior"):
+                    c1, c2 = st.columns(2)
+                    with c1:
+                        st.link_button("1. Convertir Excel", app['prior_url'], use_container_width=True, type="secondary")
+                    with c2:
+                        st.link_button("2. Abrir Stock", app['url'], use_container_width=True, type="primary")
+                else:
+                    st.link_button("Abrir Aplicación", app['url'], use_container_width=True)
 else:
-    st.warning("No se encontraron aplicaciones que coincidan con tu búsqueda.")
+    st.warning("No se encontraron aplicaciones.")
 
-# Estética adicional
+# Estética
 st.markdown("""
     <style>
-    .stButton button { border-radius: 20px; border: 1px solid #007bff; }
-    div[data-testid="stExpander"] { border: none; }
+    .stButton button { border-radius: 10px; }
     </style>
     """, unsafe_allow_html=True)
