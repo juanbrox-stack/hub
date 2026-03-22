@@ -13,13 +13,14 @@ def get_svg_base64(svg_path):
     except FileNotFoundError:
         return None
 
-# Datos de las aplicaciones (Actualizado con Seguimientos Amazon)
+# Datos de las aplicaciones actualizados
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "Business Intelligence de pedidos, análisis por marketplaces y año.", "color": "#e3f2fd"},
     {"nombre": "50 Top Ventas ES", "url": "https://50topventases.streamlit.app", "icon": "50topventases.svg", "desc": "Creación del fichero para enviar el top ventas semanal de productos líderes.", "color": "#f1f8e9"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero con la tarifa completa.", "color": "#fff3e0"},
     {"nombre": "Cecotec Downloader", "url": "https://cecotec-downloader.streamlit.app", "icon": "cecotec-downloader.svg", "desc": "Herramienta de descarga de catálogos y datos de las web de Cecotec.", "color": "#f3e5f5"},
     {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación del fichero de subida de características técnicas en PrestaShop.", "color": "#efebe9"},
+    {"nombre": "Errors", "url": "https://errors.streamlit.app/", "icon": "marketplaces.svg", "desc": "Analizar errores de publicación en marketplaces. Subir fichero descargado de Mirakl.", "color": "#ffebee"},
     {"nombre": "Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico y organización de categorías Amazon vs PS.", "color": "#e0f2f1"},
     {"nombre": "PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Creación del fichero de subida de novedades a PrestaShop.", "color": "#e8eaf6"},
     {
@@ -35,9 +36,10 @@ apps = [
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos automatizado.", "color": "#fbe9e7"}
 ]
 
-# Estilos CSS globales
+# Estilos CSS
 st.markdown("""
     <style>
+    /* Botones Azules */
     div.stButton > button {
         background-color: #007bff !important;
         color: white !important;
@@ -46,16 +48,17 @@ st.markdown("""
         height: 3em !important;
         width: 100% !important;
         font-weight: bold !important;
+        margin-top: 10px;
     }
     div.stButton > button:hover {
         background-color: #0056b3 !important;
     }
+    /* Tarjetas con fondo */
     .app-card {
-        padding: 25px;
+        padding: 20px;
         border-radius: 15px;
         border: 1px solid #e0e0e0;
         text-align: center;
-        margin-bottom: 5px;
         height: 250px;
         display: flex;
         flex-direction: column;
@@ -76,15 +79,16 @@ if apps_filtradas:
     cols = st.columns(3)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 3]:
+            # Icono
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
-            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="60" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
+            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="55" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
             
-            # Contenedor de color
+            # Tarjeta de color
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
                     {icon_html}
-                    <h3 style="color: #333; margin: 0; font-size: 1.2rem;">{app['nombre']}</h3>
-                    <p style="color: #555; font-size: 0.85rem; margin-top: 10px; line-height: 1.2;">{app['desc']}</p>
+                    <h3 style="color: #333; margin: 0; font-size: 1.15rem;">{app['nombre']}</h3>
+                    <p style="color: #555; font-size: 0.85rem; margin-top: 8px; line-height: 1.3;">{app['desc']}</p>
                 </div>
                 """, unsafe_allow_html=True)
             
