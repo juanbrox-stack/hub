@@ -2,8 +2,8 @@ name: Mantener Hub Turaco Vivo
 
 on:
   schedule:
-    # Se ejecuta cada 4 días a las 08:00 UTC
-    - cron: '0 8 */4 * *'
+    # Se ejecuta cada día a las 08:00 UTC
+    - cron: '0 8 */1 * *'
   workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub
 
 jobs:
