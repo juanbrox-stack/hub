@@ -13,7 +13,7 @@ def get_svg_base64(svg_path):
     except FileNotFoundError:
         return None
 
-# Datos de las aplicaciones actualizados
+# LISTA COMPLETA DE APPS (Verificada: 11 aplicaciones)
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "Business Intelligence de pedidos, análisis por marketplaces y año.", "color": "#e3f2fd"},
     {"nombre": "50 Top Ventas ES", "url": "https://50topventases.streamlit.app", "icon": "50topventases.svg", "desc": "Creación del fichero para enviar el top ventas semanal de productos líderes.", "color": "#f1f8e9"},
@@ -39,7 +39,6 @@ apps = [
 # Estilos CSS
 st.markdown("""
     <style>
-    /* Botones Azules */
     div.stButton > button {
         background-color: #007bff !important;
         color: white !important;
@@ -53,7 +52,6 @@ st.markdown("""
     div.stButton > button:hover {
         background-color: #0056b3 !important;
     }
-    /* Tarjetas con fondo */
     .app-card {
         padding: 20px;
         border-radius: 15px;
@@ -71,6 +69,7 @@ st.markdown("""
 st.title("🚀 Panel Central de Aplicaciones")
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
+# Filtrar
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower()]
 
 st.markdown("---")
@@ -79,11 +78,11 @@ if apps_filtradas:
     cols = st.columns(3)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 3]:
-            # Icono
+            # Cargar icono
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="55" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
             
-            # Tarjeta de color
+            # Tarjeta de color con texto dentro
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
                     {icon_html}
@@ -92,7 +91,7 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
-            # Botones
+            # Botones debajo de la tarjeta
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1:
