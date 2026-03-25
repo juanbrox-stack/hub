@@ -13,7 +13,7 @@ def get_svg_base64(svg_path):
     except FileNotFoundError:
         return None
 
-# LISTA COMPLETA DE APPS (13 aplicaciones)
+# LISTA COMPLETA DE APPS (14 aplicaciones)
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "Business Intelligence de pedidos, análisis por marketplaces y año.", "color": "#e3f2fd"},
     {"nombre": "50 Top Ventas ES", "url": "https://50topventases.streamlit.app", "icon": "50topventases.svg", "desc": "Creación del fichero para enviar el top ventas semanal de productos líderes.", "color": "#f1f8e9"},
@@ -33,7 +33,10 @@ apps = [
         "prior_url": "https://convertirexcels.streamlit.app/"
     },
     {"nombre": "Seguimientos Amazon", "url": "https://seguimientosamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Herramienta para el seguimiento y control de pedidos/envíos en Amazon.", "color": "#eceff1"},
+    # GRUPO EXCEL TOOLS
     {"nombre": "Amazon Facturas", "url": "https://transformarexcelamazonfacturas.streamlit.app/", "icon": "stockamazon.svg", "desc": "Transformación de ficheros Excel para la gestión de facturación en Amazon.", "color": "#f3e5f5"},
+    {"nombre": "Dividir Excel", "url": "https://dividirexcel.streamlit.app/", "icon": "marketplaces.svg", "desc": "Herramienta para separar archivos Excel en múltiples pestañas o ficheros según columnas.", "color": "#ede7f6"},
+    
     {"nombre": "Reviews Tracker", "url": "https://reviewstracker.streamlit.app", "icon": "marketplaces.svg", "desc": "Seguimiento y análisis de reseñas de clientes en diferentes plataformas.", "color": "#f0f4c3"},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos automatizado.", "color": "#fbe9e7"}
 ]
@@ -80,11 +83,11 @@ if apps_filtradas:
     cols = st.columns(3)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 3]:
-            # Cargar icono SVG en base64
+            # Cargar icono
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="55" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
             
-            # Bloque de la tarjeta con fondo de color
+            # Tarjeta de color
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
                     {icon_html}
@@ -93,7 +96,7 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
-            # Botones de acceso
+            # Botones
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1:
