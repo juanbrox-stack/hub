@@ -1,16 +1,43 @@
-name: Mantener Hub Turaco Vivo
+name: Mantener Apps Streamlit Vivas
 
 on:
   schedule:
-    # Se ejecuta TODOS los días a las 08:00 UTC
-    - cron: '0 8 * * *'
-  workflow_dispatch: # Permite ejecución manual para probar
+    # Se ejecuta a las 07:30 UTC para que estén listas a las 08:30-09:00
+    - cron: '30 7 * * *'
+  workflow_dispatch: # Botón para probar manualmente
 
 jobs:
-  ping_hub:
+  ping_apps:
     runs-on: ubuntu-latest
     steps:
-      - name: Simular Visita de Navegador
+      - name: Despertar aplicaciones
         run: |
-          # Realiza una petición completa simulando Chrome en Windows
-          curl -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" https://appsmarketplaces.streamlit.app/
+          # Lista de tus URLs de Streamlit (añade aquí todas las que necesites)
+          URLS=(
+            "https://appsmarketplaces.streamlit.app/"
+            "https://50topventases.streamlit.app/"
+            "https://actualizartarifas.streamlit.app/"
+            "https://cecotec-downloader.streamlit.app/"
+            "https://hubapliciones.streamlit.app/"
+            "https://multitienda-bi-group.streamlit.app/"
+            "https://errors.streamlit.app/"
+            "https://featuresps.streamlit.app/"
+            "https://mapcategories.streamlit.app/"
+            "https://ps-bridge.streamlit.app/"
+            "https://seguimientosamazon.streamlit.app/"
+            "https://stockamazon.streamlit.app/"
+            "https://convertirexcels.streamlit.app/"
+            "https://unidadnueva.streamlit.app/"
+            "https://reviewstracker.streamlit.app/"
+          )
+
+          for url in "${URLS[@]}"; do
+            echo "Intentando despertar: $url"
+            # Hacemos 3 peticiones seguidas para asegurar que el servidor reaccione
+            for i in {1..3}; do
+              curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0" \
+                   "$url" -o /dev/null -w "Petición $i: %{http_code}\n"
+              sleep 10
+            done
+            echo "---"
+          done
