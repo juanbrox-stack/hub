@@ -35,7 +35,7 @@ apps = [
     {"nombre": "Seguimientos Amazon", "url": "https://seguimientosamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Herramienta para el seguimiento y control de pedidos/envíos en Amazon.", "color": "#eceff1"},
     # GRUPO EXCEL TOOLS
     {"nombre": "Amazon Facturas", "url": "https://transformarexcelamazonfacturas.streamlit.app/", "icon": "stockamazon.svg", "desc": "Transformación de ficheros Excel para la gestión de facturación en Amazon.", "color": "#f3e5f5"},
-    {"nombre": "Dividir Excel", "url": "https://dividirexcel.streamlit.app/", "icon": "marketplaces.svg", "desc": "Herramienta para separar archivos Excel en múltiples pestañas o ficheros según columnas.", "color": "#ede7f6"},
+    {"nombre": "Dividir Excel", "url": "https://dividirexcel.streamlit.app/", "icon": "marketplaces.svg", "desc": "Herramienta para dividir Excels con muchas filas en ficheros, tú indicas cuántas filas quieres por fichero.", "color": "#ede7f6"},
     
     {"nombre": "Reviews Tracker", "url": "https://reviewstracker.streamlit.app", "icon": "marketplaces.svg", "desc": "Seguimiento y análisis de reseñas de clientes en diferentes plataformas.", "color": "#f0f4c3"},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos automatizado.", "color": "#fbe9e7"}
