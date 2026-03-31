@@ -34,14 +34,14 @@ apps = [
     },
     {"nombre": "Seguimientos Amazon", "url": "https://seguimientosamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Herramienta para el seguimiento y control de pedidos/envíos en Amazon.", "color": "#eceff1"},
     {"nombre": "Amazon Facturas", "url": "https://transformarexcelamazonfacturas.streamlit.app/", "icon": "stockamazon.svg", "desc": "Transformación de ficheros Excel para la gestión de facturación en Amazon.", "color": "#f3e5f5"},
-    {"nombre": "Dividir Excel", "url": "https://dividirexcel.streamlit.app/", "icon": "marketplaces.svg", "desc": "Herramienta para separar archivos Excel en múltiples pestañas o ficheros según columnas.", "color": "#ede7f6"},
+    {"nombre": "Dividir Excel", "url": "https://dividirexcel.streamlit.app/", "icon": "marketplaces.svg", "desc": "Herramienta para separar archivos Excel en múltiples pestañas o ficheros.", "color": "#ede7f6"},
     {"nombre": "Comparar PS vs Amazon", "url": "https://compararpsvsamazon.streamlit.app/", "icon": "marketplaces.svg", "desc": "Auditoría de catálogo para detectar discrepancias entre PrestaShop y Amazon.", "color": "#e8f5e9"},
     {"nombre": "Reviews Tracker", "url": "https://reviewstracker.streamlit.app", "icon": "marketplaces.svg", "desc": "Seguimiento y análisis de reseñas de clientes en diferentes plataformas.", "color": "#f0f4c3"},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos automatizado.", "color": "#fbe9e7"},
     {"nombre": "Recortador Cadenas", "url": "https://recortadorcadenastexto.streamlit.app/", "icon": "marketplaces.svg", "desc": "Utilidad para limitar la longitud de textos y limpiar caracteres especiales.", "color": "#eceff1"}
 ]
 
-# Estilos CSS actualizados para 4 columnas
+# Estilos CSS con fuentes optimizadas
 st.markdown("""
     <style>
     div.stButton > button {
@@ -49,26 +49,40 @@ st.markdown("""
         color: white !important;
         border-radius: 10px !important;
         border: none !important;
-        height: 2.8em !important;
+        height: 3em !important;
         width: 100% !important;
         font-weight: bold !important;
-        font-size: 0.85rem !important;
-        margin-top: 8px;
+        font-size: 0.9rem !important;
+        margin-top: 10px;
     }
     div.stButton > button:hover {
         background-color: #0056b3 !important;
     }
     .app-card {
-        padding: 15px;
+        padding: 20px;
         border-radius: 15px;
         border: 1px solid #e0e0e0;
         text-align: center;
-        height: 260px; /* Un poco más alto para evitar cortes */
+        min-height: 300px; /* Incrementado para compensar los textos más grandes */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    .card-title {
+        color: #111; 
+        margin: 0; 
+        font-size: 1.4rem; /* Título más grande */
+        font-weight: 800; /* Negrita extra fuerte */
+        line-height: 1.1;
+    }
+    .card-desc {
+        color: #333; 
+        font-size: 0.95rem; 
+        margin-top: 15px; 
+        line-height: 1.4;
+        font-weight: 500; /* Descripción un poco más nítida */
     }
     </style>
     """, unsafe_allow_html=True)
@@ -82,24 +96,22 @@ apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() o
 st.markdown("---")
 
 if apps_filtradas:
-    # Cambio clave: st.columns(4) en lugar de 3
     cols = st.columns(4)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 4]:
-            # Cargar icono (tamaño ligeramente reducido para 4 columnas)
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
-            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="45" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
+            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="55" style="margin-bottom:12px;"/>' if b64_icon else "🖼️"
             
-            # Tarjeta
+            # Renderizado de tarjeta
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
                     {icon_html}
-                    <h3 style="color: #333; margin: 0; font-size: 1rem;">{app['nombre']}</h3>
-                    <p style="color: #555; font-size: 0.75rem; margin-top: 8px; line-height: 1.2;">{app['desc']}</p>
+                    <div class="card-title">{app['nombre']}</div>
+                    <div class="card-desc">{app['desc']}</div>
                 </div>
                 """, unsafe_allow_html=True)
             
-            # Botones
+            # Botones inferiores
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1:
