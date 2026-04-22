@@ -13,15 +13,15 @@ def get_svg_base64(svg_path):
     except FileNotFoundError:
         return None
 
-# LISTA COMPLETA DE APPS (18 aplicaciones)
+# LISTA COMPLETA DE APPS (19 aplicaciones)
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "Business Intelligence de pedidos, análisis por marketplaces y año.", "color": "#e3f2fd"},
     {"nombre": "50 Top Ventas ES", "url": "https://50topventases.streamlit.app", "icon": "50topventases.svg", "desc": "Creación del fichero para enviar el top ventas semanal de productos líderes.", "color": "#f1f8e9"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero con la tarifa completa.", "color": "#fff3e0"},
     {"nombre": "Cecotec Downloader", "url": "https://cecotec-downloader.streamlit.app", "icon": "cecotec-downloader.svg", "desc": "Herramienta de descarga de catálogos y datos de las web de Cecotec.", "color": "#f3e5f5"},
     {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación del fichero de subida de características técnicas en PrestaShop.", "color": "#efebe9"},
-    {"nombre": "Crear fichero de Características para nuevo PS Turaco 2026", "url": "https://caracteristicaspsturaco2026.streamlit.app/", "icon": "featuresps.svg", "desc": "Nueva utilidad 2026 para la gestión avanzada de características en PrestaShop.", "color": "#e1f5fe"},
-    {"nombre": "Errors", "url": "https://errors.streamlit.app/", "icon": "marketplaces.svg", "desc": "Analizar errores de publicación en marketplaces. Subir fichero descargado de Mirakl.", "color": "#ffebee"},
+    {"nombre": "Características 2026", "url": "https://caracteristicaspsturaco2026.streamlit.app/", "icon": "featuresps.svg", "desc": "Nueva utilidad 2026 para la gestión avanzada de características en PrestaShop.", "color": "#e1f5fe"},
+    {"nombre": "Errors", "url": "https://errors.streamlit.app/", "icon": "marketplaces.svg", "desc": "Analizar errores de publicación en marketplaces. Subir fichero de Mirakl.", "color": "#ffebee"},
     {"nombre": "Variaciones Cdiscount", "url": "https://variacionescdiscount.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de variaciones y combinaciones específicas para el catálogo de Cdiscount.", "color": "#fce4ec"},
     {"nombre": "Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico y organización de categorías Amazon vs PS.", "color": "#e0f2f1"},
     {"nombre": "PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Creación del fichero de subida de novedades a PrestaShop.", "color": "#e8eaf6"},
@@ -37,6 +37,7 @@ apps = [
     {"nombre": "Seguimientos Amazon", "url": "https://seguimientosamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Herramienta para el seguimiento y control de pedidos/envíos en Amazon.", "color": "#eceff1"},
     {"nombre": "Amazon Facturas", "url": "https://transformarexcelamazonfacturas.streamlit.app/", "icon": "stockamazon.svg", "desc": "Transformación de ficheros Excel para la gestión de facturación en Amazon.", "color": "#f3e5f5"},
     {"nombre": "Dividir Excel", "url": "https://dividirexcel.streamlit.app/", "icon": "marketplaces.svg", "desc": "Herramienta para separar archivos Excel en múltiples pestañas o ficheros.", "color": "#ede7f6"},
+    {"nombre": "Revisar URL Fotos", "url": "https://revisarurlimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Diagnóstico y validación masiva de URLs de imágenes para evitar errores 404.", "color": "#fff8e1"},
     {"nombre": "Comparar PS vs Amazon", "url": "https://compararpsvsamazon.streamlit.app/", "icon": "marketplaces.svg", "desc": "Auditoría de catálogo para detectar discrepancias entre PrestaShop y Amazon.", "color": "#e8f5e9"},
     {"nombre": "Reviews Tracker", "url": "https://reviewstracker.streamlit.app", "icon": "marketplaces.svg", "desc": "Seguimiento y análisis de reseñas de clientes en diferentes plataformas.", "color": "#f0f4c3"},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Creación del fichero de subida a Cecopartners de pedidos automatizado.", "color": "#fbe9e7"},
