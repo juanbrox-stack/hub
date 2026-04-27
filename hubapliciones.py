@@ -50,14 +50,15 @@ st.markdown("""
         text-align: center; min-height: 260px; display: flex;
         flex-direction: column; justify-content: flex-start; align-items: center; margin-bottom: 5px;
     }
+    /* Estilo común para todos los botones del panel */
     div.stButton > button, div.stDownloadButton > button {
         background-color: #007bff !important; color: white !important; border-radius: 10px !important;
         font-weight: bold !important; font-size: 0.85rem !important; height: 3em !important; width: 100% !important;
-        margin-top: 5px !important;
+        margin-top: 5px !important; border: none !important;
     }
-    /* Estilo específico para el botón de manual */
-    .manual-btn button {
-        background-color: transparent !important; color: #007bff !important; border: 1px solid #007bff !important;
+    /* Ajuste visual para el botón de descargar manual (más discreto) */
+    .stDownloadButton > button {
+        background-color: #ffffff !important; color: #007bff !important; border: 1px solid #007bff !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -87,24 +88,23 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
-            # --- LÓGICA DE BOTONES (Fuera del HTML para que funcionen) ---
+            # --- BOTONES ---
             
-            # 1. Botón de Manual (PDF)
+            # 1. Botón de Descarga de Manual
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
                     st.download_button(
-                        label="📖 Ver/Bajar Manual",
+                        label="📂 Descargar Manual",
                         data=f,
                         file_name=app['pdf'],
                         mime="application/pdf",
-                        key=f"pdf_{i}",
-                        help="Haz clic para descargar o abrir el manual de estructura"
+                        key=f"dl_{i}"
                     )
             else:
-                st.button("📄 Sin Manual", disabled=True, key=f"no_pdf_{i}")
+                st.button("📄 Sin Manual", disabled=True, key=f"none_{i}")
 
-            # 2. Botones de Aplicación
+            # 2. Botón de Acceso a App
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1: st.link_button("❶ Conv", app['prior_url'], use_container_width=True)
