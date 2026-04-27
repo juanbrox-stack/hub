@@ -15,26 +15,7 @@ def get_svg_base64(svg_path):
     except:
         return None
 
-def get_pdf_view_link(pdf_path):
-    """Genera un enlace para abrir el PDF en una pestaña nueva."""
-    if os.path.exists(pdf_path):
-        try:
-            with open(pdf_path, "rb") as f:
-                base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-            
-            # Usamos target="_blank" para abrir en pestaña nueva
-            return f'''
-                <a href="data:application/pdf;base64,{base64_pdf}" 
-                   target="_blank" 
-                   style="text-decoration: none; color: #007bff; font-weight: bold; font-size: 0.85rem;">
-                   📖 Abrir Manual
-                </a>
-            '''
-        except:
-            return '<span style="color: red; font-size: 0.8rem;">⚠️ Error de lectura</span>'
-    return '<span style="color: #ccc; font-size: 0.8rem;" title="No se encontró en: ' + pdf_path + '">📄 Sin PDF</span>'
-
-# LISTA COMPLETA DE APPS (21 aplicaciones)
+# --- LISTA COMPLETA DE APPS (21 aplicaciones) ---
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año.", "color": "#e3f2fd", "cat": "BI", "pdf": "Marketplaces.pdf"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "color": "#fff3e0", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
@@ -63,58 +44,39 @@ apps = [
 st.markdown("""
     <style>
     .card-title { color: #111; margin: 0; font-size: 1.35rem; font-weight: 800; line-height: 1.1; }
-    .card-desc { color: #333; font-size: 1rem; margin-top: 10px; line-height: 1.3; font-weight: 500; height: 65px; overflow: hidden; }
+    .card-desc { color: #333; font-size: 0.95rem; margin-top: 10px; line-height: 1.3; font-weight: 500; height: 60px; overflow: hidden; }
     .app-card {
         padding: 20px; border-radius: 15px; border: 1px solid #e0e0e0;
-        text-align: center; min-height: 330px; display: flex;
-        flex-direction: column; justify-content: space-between; align-items: center; margin-bottom: 10px;
+        text-align: center; min-height: 260px; display: flex;
+        flex-direction: column; justify-content: flex-start; align-items: center; margin-bottom: 5px;
     }
-    .pdf-link { margin-top: 10px; padding: 8px; background: rgba(255,255,255,0.6); border-radius: 8px; width: 100%; }
-    .intro-box { background-color: #f8f9fa; padding: 20px; border-radius: 15px; border-left: 5px solid #007bff; margin-bottom: 20px; }
-    div.stButton > button {
+    div.stButton > button, div.stDownloadButton > button {
         background-color: #007bff !important; color: white !important; border-radius: 10px !important;
-        font-weight: bold !important; font-size: 0.9rem !important; height: 3em !important; width: 100% !important;
+        font-weight: bold !important; font-size: 0.85rem !important; height: 3em !important; width: 100% !important;
+        margin-top: 5px !important;
+    }
+    /* Estilo específico para el botón de manual */
+    .manual-btn button {
+        background-color: transparent !important; color: #007bff !important; border: 1px solid #007bff !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
 st.title("🚀 Panel Central de Aplicaciones Turaco")
 
-# SECCIÓN: INTRODUCCIÓN
-st.markdown("""
-<div class="intro-box">
-    <h4>📖 Centro de Operaciones y Estructuras</h4>
-    <p>Optimización de flujos de trabajo. Consulta los manuales <b>📖 Abrir Manual</b> para validar tus ficheros en una pestaña nueva.</p>
-</div>
-""", unsafe_allow_html=True)
-
-# BUSCADOR
-search_query = st.text_input("🔍 Buscar aplicación por nombre o categoría...", "").lower()
+search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower() or search_query in app["cat"].lower()]
-
-# ÍNDICE
-if not search_query:
-    with st.expander("📊 Índice rápido de acceso directo", expanded=False):
-        # Generamos la tabla con links que también abren en pestaña nueva
-        df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
-        st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 st.markdown("---")
 
-# GRID DE TARJETAS (4 columnas)
 if apps_filtradas:
     cols = st.columns(4)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 4]:
-            # Icono
+            # Renderizado de Tarjeta
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
-            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="50" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
+            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="45" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
             
-            # Ruta al PDF (Carpeta: "Estructura PDF")
-            pdf_path = f"Estructura PDF/{app['pdf']}"
-            pdf_html = get_pdf_view_link(pdf_path)
-            
-            # Tarjeta
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
                     <div>
@@ -122,17 +84,32 @@ if apps_filtradas:
                         <div class="card-title">{app['nombre']}</div>
                         <div class="card-desc">{app['desc']}</div>
                     </div>
-                    <div class="pdf-link">{pdf_html}</div>
                 </div>
                 """, unsafe_allow_html=True)
             
-            # Botones
+            # --- LÓGICA DE BOTONES (Fuera del HTML para que funcionen) ---
+            
+            # 1. Botón de Manual (PDF)
+            pdf_path = f"Estructura PDF/{app['pdf']}"
+            if os.path.exists(pdf_path):
+                with open(pdf_path, "rb") as f:
+                    st.download_button(
+                        label="📖 Ver/Bajar Manual",
+                        data=f,
+                        file_name=app['pdf'],
+                        mime="application/pdf",
+                        key=f"pdf_{i}",
+                        help="Haz clic para descargar o abrir el manual de estructura"
+                    )
+            else:
+                st.button("📄 Sin Manual", disabled=True, key=f"no_pdf_{i}")
+
+            # 2. Botones de Aplicación
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1: st.link_button("❶ Conv", app['prior_url'], use_container_width=True)
                 with c2: st.link_button("❷ Stock", app['url'], use_container_width=True)
             else:
-                # El componente link_button de Streamlit abre por defecto en pestaña nueva
                 st.link_button("Abrir Aplicación", app['url'], use_container_width=True)
 else:
     st.warning("No se encontraron coincidencias.")
