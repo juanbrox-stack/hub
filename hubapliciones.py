@@ -15,20 +15,26 @@ def get_svg_base64(svg_path):
     except:
         return None
 
-def get_pdf_download_link(pdf_path):
-    """Genera un botón de descarga para un archivo PDF local manejando espacios y rutas."""
+def get_pdf_view_link(pdf_path):
+    """Genera un enlace para abrir el PDF en una pestaña nueva."""
     if os.path.exists(pdf_path):
         try:
             with open(pdf_path, "rb") as f:
                 base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-            filename = os.path.basename(pdf_path)
-            return f'<a href="data:application/pdf;base64,{base64_pdf}" download="{filename}" style="text-decoration: none; color: #007bff; font-weight: bold; font-size: 0.85rem;">📖 Manual de Usuario</a>'
+            
+            # Usamos target="_blank" para abrir en pestaña nueva
+            return f'''
+                <a href="data:application/pdf;base64,{base64_pdf}" 
+                   target="_blank" 
+                   style="text-decoration: none; color: #007bff; font-weight: bold; font-size: 0.85rem;">
+                   📖 Abrir Manual
+                </a>
+            '''
         except:
             return '<span style="color: red; font-size: 0.8rem;">⚠️ Error de lectura</span>'
-    return '<span style="color: #ccc; font-size: 0.8rem;">📄 Sin PDF</span>'
+    return '<span style="color: #ccc; font-size: 0.8rem;" title="No se encontró en: ' + pdf_path + '">📄 Sin PDF</span>'
 
 # LISTA COMPLETA DE APPS (21 aplicaciones)
-# IMPORTANTE: Los nombres en 'pdf' deben coincidir EXACTAMENTE con tus archivos en GitHub
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año.", "color": "#e3f2fd", "cat": "BI", "pdf": "Marketplaces.pdf"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "color": "#fff3e0", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
@@ -78,7 +84,7 @@ st.title("🚀 Panel Central de Aplicaciones Turaco")
 st.markdown("""
 <div class="intro-box">
     <h4>📖 Centro de Operaciones y Estructuras</h4>
-    <p>Optimización de flujos de trabajo en Marketplaces. Consulta los manuales <b>📂 Estructura PDF</b> para validar tus ficheros.</p>
+    <p>Optimización de flujos de trabajo. Consulta los manuales <b>📖 Abrir Manual</b> para validar tus ficheros en una pestaña nueva.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -86,10 +92,11 @@ st.markdown("""
 search_query = st.text_input("🔍 Buscar aplicación por nombre o categoría...", "").lower()
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower() or search_query in app["cat"].lower()]
 
-# ÍNDICE (Solo se muestra si no hay búsqueda activa)
+# ÍNDICE
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
-        df_index = pd.DataFrame([{"Aplicación": f"[{a['nombre']}]({a['url']})", "Categoría": a['cat'], "Función": a['desc']} for a in apps])
+        # Generamos la tabla con links que también abren en pestaña nueva
+        df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
         st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 st.markdown("---")
@@ -103,11 +110,11 @@ if apps_filtradas:
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="50" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
             
-            # Ruta al PDF (Nombre de carpeta: "Estructura PDF")
+            # Ruta al PDF (Carpeta: "Estructura PDF")
             pdf_path = f"Estructura PDF/{app['pdf']}"
-            pdf_html = get_pdf_download_link(pdf_path)
+            pdf_html = get_pdf_view_link(pdf_path)
             
-            # Tarjeta HTML
+            # Tarjeta
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
                     <div>
@@ -119,12 +126,13 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
-            # Botones de Acción
+            # Botones
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1: st.link_button("❶ Conv", app['prior_url'], use_container_width=True)
                 with c2: st.link_button("❷ Stock", app['url'], use_container_width=True)
             else:
+                # El componente link_button de Streamlit abre por defecto en pestaña nueva
                 st.link_button("Abrir Aplicación", app['url'], use_container_width=True)
 else:
-    st.warning("No se encontraron aplicaciones con ese nombre.")
+    st.warning("No se encontraron coincidencias.")
