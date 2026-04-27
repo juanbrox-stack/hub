@@ -26,71 +26,7 @@ def get_pdf_download_link(pdf_path, label):
 # LISTA ACTUALIZADA DE APPS (21 aplicaciones)
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "Business Intelligence de pedidos, análisis por marketplaces y año.", "color": "#e3f2fd", "cat": "BI & Ventas", "pdf": "marketplaces.pdf"},
-    {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero con la tarifa completa.", "color": "#fff3e0", "cat": "Tarifas", "pdf": "📖 Manual de Usuario: Actualizador de Tarifas (Web)
-Introducción
-Esta aplicación web permite actualizar masivamente los precios de tu tarifa maestra. El sistema compara las referencias de ambos archivos, actualiza el precio donde hay coincidencia y mantiene intactas las referencias que no están en la lista de actualización.
-
-Requisitos de los Archivos
-Para que la aplicación funcione correctamente, tus archivos Excel deben respetar esta estructura:
-
-Archivo de Tarifa Actual:
-
-Columna E: Debe contener la REFERENCIA.
-
-Columna G: Debe contener el PRECIO (PVPR).
-
-Archivo de Actualización:
-
-Columna C: Debe contener la REFERENCIA.
-
-Columna J: Debe contener el NUEVO PRECIO.
-
-Nota: No te preocupes por los ceros a la izquierda (ej. 00123). La app los limpia automáticamente para que coincidan.
-
-Pasos para Actualizar
-Acceso: Entra en la URL de Streamlit donde está alojada la app.
-
-Carga de Datos: * Arrastra tu archivo de tarifa completa al recuadro de la izquierda (1. Subir Tarifa Actual).
-
-Arrastra el archivo con los nuevos precios al recuadro de la derecha (2. Subir Actualización).
-
-Procesar: Haz clic en el botón "Procesar y Comparar".
-
-Revisión: Verás una tabla de "Vista previa" con las referencias que han cambiado y su precio anterior vs. el nuevo.
-
-Descarga: Haz clic en "Descargar Nueva Tarifa Completa" para obtener el Excel final.
-
-🛠 Manual de Backend: Mantenimiento y Despliegue
-Este manual está diseñado para el administrador que gestione el repositorio en GitHub o el panel de Streamlit Cloud.
-
-Arquitectura de la Solución
-La aplicación corre sobre un contenedor gestionado por Streamlit Cloud, conectado directamente a un repositorio de GitHub.
-
-Mantenimiento del Código
-Repositorio: El código principal reside en app.py.
-
-Dependencias: El archivo requirements.txt en la raíz del repositorio debe contener:
-
-Plaintext
-streamlit
-pandas
-openpyxl
-Lógica de Cruce de Datos:
-Para evitar el uso excesivo de memoria en la nube, se utiliza un mapeo de diccionarios:
-
-Python
-# Mapeo de precios nuevos sobre la tarifa base
-df_tarifa[precio_col] = df_tarifa[ref_col].map(dict_actualizacion).fillna(df_tarifa[precio_col])
-.map(): Busca la referencia en el archivo de actualización.
-
-.fillna(): Si la referencia no existe en la actualización, conserva el valor original de la tarifa.
-
-Resolución de Problemas (Troubleshooting)
-Error "Column index out of range": Ocurre si el Excel subido tiene menos columnas de las esperadas. Revisar que la tarifa tenga al menos hasta la columna G (índice 6) y la actualización hasta la J (índice 9).
-
-Reinicio de la App: Si la aplicación se queda "colgada", puedes ir al menú de Streamlit Cloud (esquina superior derecha) y seleccionar "Rerun" o "Reboot App".
-
-Límite de Memoria: Streamlit Cloud tiene un límite de 1GB de RAM. Si los archivos Excel son extremadamente grandes (más de 100.000 filas), es recomendable limpiar columnas innecesarias antes de subirlos..pdf"},
+    {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero con la tarifa completa.", "color": "#fff3e0", "cat": "Tarifas", "pdf": "Manual_Usuario_Actualizador_Tarifas.pdf"},
     {"nombre": "Cecotec Downloader", "url": "https://cecotec-downloader.streamlit.app", "icon": "cecotec-downloader.svg", "desc": "Herramienta de descarga de catálogos y datos de las web de Cecotec.", "color": "#f3e5f5", "cat": "Scraping", "pdf": "downloader.pdf"},
     {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación del fichero de subida de características técnicas en PrestaShop.", "color": "#efebe9", "cat": "Catálogo", "pdf": "features.pdf"},
     {"nombre": "Características 2026", "url": "https://caracteristicaspsturaco2026.streamlit.app/", "icon": "featuresps.svg", "desc": "Nueva utilidad 2026 para la gestión avanzada de características en PrestaShop.", "color": "#e1f5fe", "cat": "Catálogo", "pdf": "features2026.pdf"},
