@@ -47,7 +47,7 @@ st.markdown("""
     .card-desc { color: #333; font-size: 0.85rem; margin-top: 5px; line-height: 1.2; font-weight: 500; }
     .app-card {
         padding: 12px 15px; border-radius: 12px; border: 1px solid #e0e0e0;
-        text-align: center; min-height: 150px; display: flex;
+        text-align: center; min-height: 145px; display: flex;
         flex-direction: column; justify-content: center; align-items: center; margin-bottom: 5px;
     }
     div.stButton > button, div.stDownloadButton > button {
@@ -67,14 +67,14 @@ st.title("🚀 Panel Central de Aplicaciones Turaco")
 # SECCIÓN: INTRODUCCIÓN
 st.markdown("""
 <div class="intro-box">
-    <p style="margin:0; font-size:0.9rem;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o el buscador para filtrar por nombre o categoría.</p>
+    <p style="margin:0; font-size:0.9rem;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b> de estructura.</p>
 </div>
 """, unsafe_allow_html=True)
 
 # BUSCADOR
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# ÍNDICE RÁPIDO (Se muestra siempre que NO haya una búsqueda activa)
+# ÍNDICE RÁPIDO (Visible cuando no se está buscando)
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
         df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
@@ -92,7 +92,6 @@ if apps_filtradas:
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="35" style="margin-bottom:5px;"/>' if b64_icon else "📦"
             
-            # Tarjeta compacta ajustada
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
                     <div>
