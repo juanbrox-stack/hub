@@ -74,9 +74,10 @@ st.markdown("""
 # BUSCADOR
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# ÍNDICE RECUPERADO (Solo se muestra si no hay búsqueda activa)
+# ÍNDICE RÁPIDO (se muestra si no hay búsqueda)
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
+        # Generar tabla con enlaces
         df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
         st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
 
@@ -92,7 +93,7 @@ if apps_filtradas:
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="40" style="margin-bottom:8px;"/>' if b64_icon else "🖼️"
             
-            # Tarjeta HTML ajustada (más compacta)
+            # Tarjeta compacta
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
                     <div>
