@@ -44,37 +44,55 @@ apps = [
 st.markdown("""
     <style>
     .card-title { color: #111; margin: 0; font-size: 1.35rem; font-weight: 800; line-height: 1.1; }
-    .card-desc { color: #333; font-size: 0.95rem; margin-top: 10px; line-height: 1.3; font-weight: 500; height: 60px; overflow: hidden; }
+    .card-desc { color: #333; font-size: 0.9rem; margin-top: 8px; line-height: 1.2; font-weight: 500; }
     .app-card {
-        padding: 20px; border-radius: 15px; border: 1px solid #e0e0e0;
-        text-align: center; min-height: 260px; display: flex;
-        flex-direction: column; justify-content: flex-start; align-items: center; margin-bottom: 5px;
+        padding: 15px 20px; border-radius: 15px; border: 1px solid #e0e0e0;
+        text-align: center; min-height: 180px; display: flex;
+        flex-direction: column; justify-content: center; align-items: center; margin-bottom: 5px;
     }
     div.stButton > button, div.stDownloadButton > button {
         background-color: #007bff !important; color: white !important; border-radius: 10px !important;
-        font-weight: bold !important; font-size: 0.85rem !important; height: 3em !important; width: 100% !important;
-        margin-top: 5px !important; border: none !important;
+        font-weight: bold !important; font-size: 0.85rem !important; height: 2.8em !important; width: 100% !important;
+        margin-top: 2px !important; border: none !important;
     }
     .stDownloadButton > button {
         background-color: #ffffff !important; color: #007bff !important; border: 1px solid #007bff !important;
     }
+    .intro-box { background-color: #f8f9fa; padding: 15px; border-radius: 12px; border-left: 5px solid #007bff; margin-bottom: 15px; }
     </style>
     """, unsafe_allow_html=True)
 
 st.title("🚀 Panel Central de Aplicaciones Turaco")
 
+# SECCIÓN: INTRODUCCIÓN
+st.markdown("""
+<div class="intro-box">
+    <p style="margin:0; font-size:0.95rem;">Optimización de flujos de trabajo en Marketplaces. Consulta el <b>Índice</b> para accesos rápidos o descarga los <b>Manuales</b> para validar tus ficheros.</p>
+</div>
+""", unsafe_allow_html=True)
+
+# BUSCADOR
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
+
+# ÍNDICE RECUPERADO (Solo se muestra si no hay búsqueda activa)
+if not search_query:
+    with st.expander("📊 Índice rápido de acceso directo", expanded=False):
+        df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
+        st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
+
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower() or search_query in app["cat"].lower()]
 
 st.markdown("---")
 
+# GRID DE TARJETAS
 if apps_filtradas:
     cols = st.columns(4)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 4]:
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
-            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="45" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
+            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="40" style="margin-bottom:8px;"/>' if b64_icon else "🖼️"
             
+            # Tarjeta HTML ajustada (más compacta)
             st.markdown(f"""
                 <div class="app-card" style="background-color: {app['color']};">
                     <div>
@@ -85,7 +103,7 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
-            # --- BOTONES ---
+            # BOTÓN DESCARGA MANUAL
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
@@ -99,6 +117,7 @@ if apps_filtradas:
             else:
                 st.button("📄 Sin Manual", disabled=True, key=f"none_{i}")
 
+            # BOTONES DE ACCESO
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1: st.link_button("❶ Conv", app['prior_url'], use_container_width=True)
