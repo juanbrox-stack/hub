@@ -43,22 +43,54 @@ apps = [
 # Estilos CSS
 st.markdown("""
     <style>
+    /* Color Turquesa Principal: #00ced1 */
     .card-title { color: #111; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
     .card-desc { color: #333; font-size: 0.85rem; margin-top: 5px; line-height: 1.2; font-weight: 500; }
+    
     .app-card {
         padding: 12px 15px; border-radius: 12px; border: 1px solid #e0e0e0;
         text-align: center; min-height: 145px; display: flex;
-        flex-direction: column; justify-content: center; align-items: center; margin-bottom: 5px;
+        flex-direction: column; justify-content: center; align-items: center; margin-bottom: 10px;
     }
+
+    /* Estilo de botones centrado y color turquesa */
     div.stButton > button, div.stDownloadButton > button {
-        background-color: #007bff !important; color: white !important; border-radius: 8px !important;
-        font-weight: bold !important; font-size: 0.8rem !important; height: 2.5em !important; width: 100% !important;
-        margin-top: 2px !important; border: none !important;
+        background-color: #00ced1 !important; /* Turquesa */
+        color: white !important; 
+        border-radius: 8px !important;
+        font-weight: bold !important; 
+        font-size: 0.8rem !important; 
+        height: 2.5em !important; 
+        width: 80% !important; /* Un poco más estrecho para centrar visualmente */
+        margin: 5px auto !important; 
+        display: block !important;
+        border: none !important;
     }
+
+    /* Botón de "Sin Manual" o estados secundarios */
     .stDownloadButton > button {
-        background-color: #ffffff !important; color: #007bff !important; border: 1px solid #007bff !important;
+        background-color: #00ced1 !important; 
+        color: white !important;
     }
-    .intro-box { background-color: #f8f9fa; padding: 12px; border-radius: 10px; border-left: 5px solid #007bff; margin-bottom: 15px; }
+    
+    /* Hover para los botones */
+    div.stButton > button:hover, div.stDownloadButton > button:hover {
+        background-color: #00afb2 !important;
+        border: none !important;
+    }
+
+    .intro-box { 
+        background-color: #f8f9fa; 
+        padding: 12px; 
+        border-radius: 10px; 
+        border-left: 5px solid #00ced1; 
+        margin-bottom: 15px; 
+    }
+
+    /* Centrar el contenedor del botón de descarga */
+    .stDownloadButton {
+        text-align: center !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -74,7 +106,7 @@ st.markdown("""
 # BUSCADOR
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# ÍNDICE RÁPIDO (Visible cuando no hay búsqueda activa)
+# ÍNDICE RÁPIDO
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
         df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
@@ -89,6 +121,7 @@ if apps_filtradas:
     cols = st.columns(4)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 4]:
+            # Renderizado de la Tarjeta
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="35" style="margin-bottom:5px;"/>' if b64_icon else "📦"
             
@@ -102,7 +135,8 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
-            # BOTÓN DESCARGA MANUAL
+            # BOTÓN DESCARGA MANUAL (CENTRADO DEBAJO)
+            # Ruta actualizada según captura: "Estructura PDF/"
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
