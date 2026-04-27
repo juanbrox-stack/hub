@@ -16,6 +16,7 @@ def get_svg_base64(svg_path):
         return None
 
 # --- LISTA COMPLETA DE APPS (21 aplicaciones) ---
+# Se han actualizado los colores de fondo de las tarjetas a #FAF9F5
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año.", "color": "#FAF9F5", "cat": "BI", "pdf": "Marketplaces.pdf"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
@@ -40,31 +41,35 @@ apps = [
     {"nombre": "Recortador Cadenas", "url": "https://recortadorcadenastexto.streamlit.app/", "icon": "marketplaces.svg", "desc": "Limpieza y recorte de longitud de textos.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Recortador Cadenas.pdf"}
 ]
 
-# Estilos CSS
+# Estilos CSS Actualizados
 st.markdown("""
     <style>
-    /* Fondo negro para la aplicación */
+    /* Fondo general Negro */
     .stApp {
         background-color: #000000;
+        color: #ffffff;
     }
-    
+
     /* Textos principales en blanco */
-    h1, p, span, label, .stMarkdown {
+    h1, h2, h3, h4, h5, h6, label, span, .stMarkdown {
         color: #ffffff !important;
     }
 
-    /* Estilo de las tarjetas (Off-White) */
-    .card-title { color: #111111 !important; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
+    /* Título de tarjeta (Negro para contraste) */
+    .card-title { color: #111; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
+    
+    /* Descripción de tarjeta (Gris oscuro para legibilidad) CORREGIDO */
     .card-desc { color: #333333 !important; font-size: 0.85rem; margin-top: 5px; line-height: 1.2; font-weight: 500; }
     
+    /* Estilo de la tarjeta (Off-White #FAF9F5) */
     .app-card {
         padding: 12px 15px; border-radius: 12px; border: 1px solid #333;
         text-align: center; min-height: 145px; display: flex;
         flex-direction: column; justify-content: center; align-items: center; margin-bottom: 10px;
-        background-color: #FAF9F5; /* Color de recuadro pedido */
+        background-color: #FAF9F5;
     }
 
-    /* Centrado de botones Streamlit */
+    /* Forzar centrado de botones Streamlit */
     [data-testid="stVerticalBlock"] > div:has(div.stButton), 
     [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton) {
         display: flex;
@@ -72,7 +77,7 @@ st.markdown("""
         width: 100%;
     }
 
-    /* Botones Turquesa #3EB1C8 */
+    /* Estilo de botones (Turquesa #3EB1C8) */
     div.stButton > button, div.stDownloadButton > button {
         background-color: #3EB1C8 !important; 
         color: white !important; 
@@ -83,28 +88,39 @@ st.markdown("""
         width: 160px !important;
         margin: 5px auto !important; 
         border: none !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
+    /* Hover para los botones */
     div.stButton > button:hover, div.stDownloadButton > button:hover {
         background-color: #359fb4 !important;
         border: none !important;
     }
 
+    /* Caja de introducción (Gris oscuro) */
     .intro-box { 
         background-color: #1a1a1a; 
         padding: 12px; 
         border-radius: 10px; 
         border-left: 5px solid #3EB1C8; 
         margin-bottom: 15px; 
+        color: #ffffff !important;
     }
 
-    /* Estilo de la tabla de índice para modo oscuro */
+    /* Asegurar que el texto dentro del expander del índice se vea */
+    .stExpander, .stExpander span {
+        color: #ffffff !important;
+    }
+    
+    /* Estilo de la tabla de índice rápida */
     .stExpander {
         background-color: #111111 !important;
         border: 1px solid #333 !important;
     }
-    
-    /* Enlaces en el índice */
+
+    /* Estilo de los enlaces en el índice */
     a { color: #3EB1C8 !important; text-decoration: none; font-weight: bold; }
     </style>
     """, unsafe_allow_html=True)
@@ -124,9 +140,12 @@ search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 # ÍNDICE RÁPIDO
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
+        # Crear DataFrame con enlaces HTML
         df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
+        # Renderizar tabla HTML
         st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
 
+# Filtrado de aplicaciones
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower() or search_query in app["cat"].lower()]
 
 st.markdown("---")
@@ -136,10 +155,11 @@ if apps_filtradas:
     cols = st.columns(4)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 4]:
-            # Tarjeta Visual (Off-White)
+            # Renderizado visual de la Tarjeta
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="35" style="margin-bottom:5px;"/>' if b64_icon else "📦"
             
+            # HTML de la tarjeta (colores fijos para contraste)
             st.markdown(f"""
                 <div class="app-card">
                     <div>
@@ -151,6 +171,7 @@ if apps_filtradas:
                 """, unsafe_allow_html=True)
             
             # BOTÓN MANUAL (CENTRADO)
+            # Ruta de captura: "Estructura PDF/"
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
@@ -162,6 +183,7 @@ if apps_filtradas:
                         key=f"dl_{i}"
                     )
             else:
+                # Botón deshabilitado si no hay manual
                 st.button("📄 Sin Manual", disabled=True, key=f"none_{i}")
 
             # BOTONES DE ACCESO
