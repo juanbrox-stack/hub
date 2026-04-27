@@ -74,7 +74,7 @@ st.markdown("""
 # BUSCADOR
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# ÍNDICE RÁPIDO (Visible cuando no se está buscando)
+# ÍNDICE RÁPIDO (Visible cuando no hay búsqueda activa)
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
         df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
