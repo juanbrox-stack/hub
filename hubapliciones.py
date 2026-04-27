@@ -43,7 +43,7 @@ apps = [
 # Estilos CSS
 st.markdown("""
     <style>
-    /* Color Turquesa Principal: #00ced1 */
+    /* Color Turquesa Pedido: #3EB1C8 */
     .card-title { color: #111; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
     .card-desc { color: #333; font-size: 0.85rem; margin-top: 5px; line-height: 1.2; font-weight: 500; }
     
@@ -53,29 +53,32 @@ st.markdown("""
         flex-direction: column; justify-content: center; align-items: center; margin-bottom: 10px;
     }
 
-    /* Estilo de botones centrado y color turquesa */
+    /* Forzar el centrado del contenedor de botones de Streamlit */
+    [data-testid="stVerticalBlock"] > div:has(div.stButton), 
+    [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton) {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Estilo unificado para botones */
     div.stButton > button, div.stDownloadButton > button {
-        background-color: #00ced1 !important; /* Turquesa */
+        background-color: #3EB1C8 !important; 
         color: white !important; 
         border-radius: 8px !important;
         font-weight: bold !important; 
         font-size: 0.8rem !important; 
-        height: 2.5em !important; 
-        width: 80% !important; /* Un poco más estrecho para centrar visualmente */
+        height: 2.6em !important; 
+        width: 160px !important; /* Ancho fijo para que el centrado sea perfecto */
         margin: 5px auto !important; 
-        display: block !important;
         border: none !important;
-    }
-
-    /* Botón de "Sin Manual" o estados secundarios */
-    .stDownloadButton > button {
-        background-color: #00ced1 !important; 
-        color: white !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
-    /* Hover para los botones */
     div.stButton > button:hover, div.stDownloadButton > button:hover {
-        background-color: #00afb2 !important;
+        background-color: #359fb4 !important;
         border: none !important;
     }
 
@@ -83,13 +86,8 @@ st.markdown("""
         background-color: #f8f9fa; 
         padding: 12px; 
         border-radius: 10px; 
-        border-left: 5px solid #00ced1; 
+        border-left: 5px solid #3EB1C8; 
         margin-bottom: 15px; 
-    }
-
-    /* Centrar el contenedor del botón de descarga */
-    .stDownloadButton {
-        text-align: center !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -121,7 +119,7 @@ if apps_filtradas:
     cols = st.columns(4)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 4]:
-            # Renderizado de la Tarjeta
+            # Tarjeta Visual
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="35" style="margin-bottom:5px;"/>' if b64_icon else "📦"
             
@@ -135,8 +133,7 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
-            # BOTÓN DESCARGA MANUAL (CENTRADO DEBAJO)
-            # Ruta actualizada según captura: "Estructura PDF/"
+            # BOTÓN MANUAL (CENTRADO)
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
