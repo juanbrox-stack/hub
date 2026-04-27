@@ -50,13 +50,11 @@ st.markdown("""
         text-align: center; min-height: 260px; display: flex;
         flex-direction: column; justify-content: flex-start; align-items: center; margin-bottom: 5px;
     }
-    /* Estilo común para todos los botones del panel */
     div.stButton > button, div.stDownloadButton > button {
         background-color: #007bff !important; color: white !important; border-radius: 10px !important;
         font-weight: bold !important; font-size: 0.85rem !important; height: 3em !important; width: 100% !important;
         margin-top: 5px !important; border: none !important;
     }
-    /* Ajuste visual para el botón de descargar manual (más discreto) */
     .stDownloadButton > button {
         background-color: #ffffff !important; color: #007bff !important; border: 1px solid #007bff !important;
     }
@@ -74,7 +72,6 @@ if apps_filtradas:
     cols = st.columns(4)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 4]:
-            # Renderizado de Tarjeta
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="45" style="margin-bottom:10px;"/>' if b64_icon else "🖼️"
             
@@ -89,8 +86,6 @@ if apps_filtradas:
                 """, unsafe_allow_html=True)
             
             # --- BOTONES ---
-            
-            # 1. Botón de Descarga de Manual
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
@@ -104,7 +99,6 @@ if apps_filtradas:
             else:
                 st.button("📄 Sin Manual", disabled=True, key=f"none_{i}")
 
-            # 2. Botón de Acceso a App
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1: st.link_button("❶ Conv", app['prior_url'], use_container_width=True)
