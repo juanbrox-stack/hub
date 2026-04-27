@@ -16,7 +16,6 @@ def get_svg_base64(svg_path):
         return None
 
 # --- LISTA COMPLETA DE APPS (21 aplicaciones) ---
-# Se han actualizado los colores de fondo de las tarjetas a #FAF9F5
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año.", "color": "#FAF9F5", "cat": "BI", "pdf": "Marketplaces.pdf"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
@@ -41,27 +40,19 @@ apps = [
     {"nombre": "Recortador Cadenas", "url": "https://recortadorcadenastexto.streamlit.app/", "icon": "marketplaces.svg", "desc": "Limpieza y recorte de longitud de textos.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Recortador Cadenas.pdf"}
 ]
 
-# Estilos CSS Actualizados
+# Estilos CSS
 st.markdown("""
     <style>
-    /* Fondo general Negro */
+    /* Fondo Negro para el panel */
     .stApp {
         background-color: #000000;
         color: #ffffff;
     }
 
-    /* Textos principales en blanco */
-    h1, h2, h3, h4, h5, h6, label, span, .stMarkdown {
-        color: #ffffff !important;
-    }
-
-    /* Título de tarjeta (Negro para contraste) */
-    .card-title { color: #111; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
-    
-    /* Descripción de tarjeta (Gris oscuro para legibilidad) CORREGIDO */
+    /* Títulos y textos descriptivos de la tarjeta */
+    .card-title { color: #111111 !important; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
     .card-desc { color: #333333 !important; font-size: 0.85rem; margin-top: 5px; line-height: 1.2; font-weight: 500; }
     
-    /* Estilo de la tarjeta (Off-White #FAF9F5) */
     .app-card {
         padding: 12px 15px; border-radius: 12px; border: 1px solid #333;
         text-align: center; min-height: 145px; display: flex;
@@ -69,7 +60,7 @@ st.markdown("""
         background-color: #FAF9F5;
     }
 
-    /* Forzar centrado de botones Streamlit */
+    /* Forzar centrado de los contenedores de botones */
     [data-testid="stVerticalBlock"] > div:has(div.stButton), 
     [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton) {
         display: flex;
@@ -77,10 +68,10 @@ st.markdown("""
         width: 100%;
     }
 
-    /* Estilo de botones (Turquesa #3EB1C8) */
+    /* BOTONES: Color #3EB1C8 y Texto Gris Claro #E0E0E0 */
     div.stButton > button, div.stDownloadButton > button {
         background-color: #3EB1C8 !important; 
-        color: white !important; 
+        color: #E0E0E0 !important; /* Gris claro para que se aprecie el texto siempre */
         border-radius: 8px !important;
         font-weight: bold !important; 
         font-size: 0.8rem !important; 
@@ -91,75 +82,60 @@ st.markdown("""
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: all 0.3s ease;
     }
     
-    /* Hover para los botones */
+    /* HOVER: Texto en Blanco puro al pasar el ratón */
     div.stButton > button:hover, div.stDownloadButton > button:hover {
         background-color: #359fb4 !important;
+        color: #ffffff !important;
         border: none !important;
     }
 
-    /* Caja de introducción (Gris oscuro) */
+    /* Caja de introducción */
     .intro-box { 
         background-color: #1a1a1a; 
         padding: 12px; 
         border-radius: 10px; 
         border-left: 5px solid #3EB1C8; 
         margin-bottom: 15px; 
-        color: #ffffff !important;
     }
 
-    /* Asegurar que el texto dentro del expander del índice se vea */
-    .stExpander, .stExpander span {
-        color: #ffffff !important;
-    }
-    
-    /* Estilo de la tabla de índice rápida */
+    /* Ajustes para el índice rápido */
     .stExpander {
         background-color: #111111 !important;
         border: 1px solid #333 !important;
     }
-
-    /* Estilo de los enlaces en el índice */
     a { color: #3EB1C8 !important; text-decoration: none; font-weight: bold; }
     </style>
     """, unsafe_allow_html=True)
 
 st.title("🚀 Panel Central de Aplicaciones Turaco")
 
-# SECCIÓN: INTRODUCCIÓN
 st.markdown("""
 <div class="intro-box">
-    <p style="margin:0; font-size:0.9rem;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b> de estructura.</p>
+    <p style="margin:0; font-size:0.9rem; color:white;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b> de estructura.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# BUSCADOR
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# ÍNDICE RÁPIDO
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
-        # Crear DataFrame con enlaces HTML
         df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
-        # Renderizar tabla HTML
         st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
 
-# Filtrado de aplicaciones
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower() or search_query in app["cat"].lower()]
 
 st.markdown("---")
 
-# GRID DE TARJETAS
 if apps_filtradas:
     cols = st.columns(4)
     for i, app in enumerate(apps_filtradas):
         with cols[i % 4]:
-            # Renderizado visual de la Tarjeta
             b64_icon = get_svg_base64(f"iconos/{app['icon']}")
             icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="35" style="margin-bottom:5px;"/>' if b64_icon else "📦"
             
-            # HTML de la tarjeta (colores fijos para contraste)
             st.markdown(f"""
                 <div class="app-card">
                     <div>
@@ -170,8 +146,7 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
-            # BOTÓN MANUAL (CENTRADO)
-            # Ruta de captura: "Estructura PDF/"
+            # BOTÓN MANUAL
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
@@ -183,7 +158,6 @@ if apps_filtradas:
                         key=f"dl_{i}"
                     )
             else:
-                # Botón deshabilitado si no hay manual
                 st.button("📄 Sin Manual", disabled=True, key=f"none_{i}")
 
             # BOTONES DE ACCESO
