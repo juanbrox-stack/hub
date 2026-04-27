@@ -26,7 +26,7 @@ def get_pdf_download_link(pdf_path, label):
 # LISTA ACTUALIZADA DE APPS (21 aplicaciones)
 apps = [
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "Business Intelligence de pedidos, análisis por marketplaces y año.", "color": "#e3f2fd", "cat": "BI & Ventas", "pdf": "marketplaces.pdf"},
-    {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero con la tarifa completa.", "color": "#fff3e0", "cat": "Tarifas", "pdf": "Manual_Usuario_Actualizador_Tarifas.pdf"},
+    {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero con la tarifa completa.", "color": "#fff3e0", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
     {"nombre": "Cecotec Downloader", "url": "https://cecotec-downloader.streamlit.app", "icon": "cecotec-downloader.svg", "desc": "Herramienta de descarga de catálogos y datos de las web de Cecotec.", "color": "#f3e5f5", "cat": "Scraping", "pdf": "downloader.pdf"},
     {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación del fichero de subida de características técnicas en PrestaShop.", "color": "#efebe9", "cat": "Catálogo", "pdf": "features.pdf"},
     {"nombre": "Características 2026", "url": "https://caracteristicaspsturaco2026.streamlit.app/", "icon": "featuresps.svg", "desc": "Nueva utilidad 2026 para la gestión avanzada de características en PrestaShop.", "color": "#e1f5fe", "cat": "Catálogo", "pdf": "features2026.pdf"},
