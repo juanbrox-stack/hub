@@ -15,9 +15,9 @@ def get_svg_base64(svg_path):
     except:
         return None
 
-# --- LISTA COMPLETA DE APPS (23 aplicaciones) ---
+# --- LISTA COMPLETA DE APPS (Orden Alfabético) ---
 apps = [
- {"nombre": "Actualiza URLs", "url": "https://actualizaurlsimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Edición masiva de rutas de imágenes en ficheros.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Actualiza URLs.pdf"},
+    {"nombre": "Actualiza URLs", "url": "https://actualizaurlsimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Edición masiva de rutas de imágenes en ficheros.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Actualiza URLs.pdf"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
     {"nombre": "Amazon Facturas", "url": "https://transformarexcelamazonfacturas.streamlit.app/", "icon": "stockamazon.svg", "desc": "Transformación de ficheros para facturación Amazon.", "color": "#FAF9F5", "cat": "Facturación", "pdf": "Amazon Facturas.pdf"},
     {"nombre": "Calculadora ROI Automatización", "url": "https://calculadoraretornoinversion.streamlit.app/", "icon": "marketplaces.svg", "desc": "Calcula el ahorro y rentabilidad de proyectos de automatización.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Calculadora_ROI_Automatizacion.pdf"},
@@ -42,19 +42,35 @@ apps = [
     {"nombre": "Variaciones Cdiscount", "url": "https://variacionescdiscount.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de variaciones específicas para Cdiscount.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Variaciones Cdiscount.pdf"}
 ]
 
-# Estilos CSS
+# Estilos CSS Corregidos
 st.markdown("""
     <style>
-    /* Fondo Negro para el panel */
-    .stApp {
-        background-color: #000000;
-        color: #ffffff;
+    /* 1. Fondo Negro general */
+    .stApp { background-color: #000000; color: #ffffff; }
+    
+    /* 2. BUSCADOR: Forzar visibilidad del texto y el label */
+    [data-testid="stTextInput"] label p { color: #ffffff !important; font-weight: bold; }
+    [data-testid="stTextInput"] input { 
+        color: #ffffff !important; 
+        background-color: #1a1a1a !important; 
+        border: 1px solid #333 !important;
     }
 
-    /* Títulos y textos descriptivos de la tarjeta */
+    /* 3. ÍNDICE (Expander): Forzar fondo oscuro y texto blanco */
+    .stExpander {
+        background-color: #000000 !important;
+        border: 1px solid #333 !important;
+    }
+    .stExpander [data-testid="stHeader"] p { color: #ffffff !important; font-weight: bold; }
+    .stExpander [data-testid="stExpanderDetails"] { background-color: #000000 !important; color: #ffffff !important; }
+    
+    /* Estilo de la tabla dentro del índice */
+    table { background-color: #000000 !important; color: #ffffff !important; border: 1px solid #333; }
+    th { color: #3EB1C8 !important; }
+
+    /* 4. TARJETAS (Mantenemos Cream #FAF9F5) */
     .card-title { color: #111111 !important; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
     .card-desc { color: #333333 !important; font-size: 0.85rem; margin-top: 5px; line-height: 1.2; font-weight: 500; }
-    
     .app-card {
         padding: 12px 15px; border-radius: 12px; border: 1px solid #333;
         text-align: center; min-height: 145px; display: flex;
@@ -62,52 +78,29 @@ st.markdown("""
         background-color: #FAF9F5;
     }
 
-    /* Forzar centrado de los contenedores de botones */
+    /* 5. BOTONES (Turquesa #3EB1C8) */
     [data-testid="stVerticalBlock"] > div:has(div.stButton), 
-    [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton) {
-        display: flex;
-        justify-content: center;
-        width: 100%;
+    [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton),
+    [data-testid="stVerticalBlock"] > div:has(div.stLinkButton) {
+        display: flex; justify-content: center; width: 100%;
     }
 
-    /* BOTONES: Color #3EB1C8 y Texto Gris Claro #E0E0E0 */
-    div.stButton > button, div.stDownloadButton > button {
+    div.stButton > button, div.stDownloadButton > button, div.stLinkButton > a {
         background-color: #3EB1C8 !important; 
         color: #E0E0E0 !important;
-        border-radius: 8px !important;
-        font-weight: bold !important; 
-        font-size: 0.8rem !important; 
-        height: 2.6em !important; 
-        width: 160px !important;
-        margin: 5px auto !important; 
-        border: none !important;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.3s ease;
+        border-radius: 8px !important; 
+        font-weight: bold !important; font-size: 0.8rem !important; 
+        height: 2.8em !important; width: 160px !important; 
+        margin: 5px auto !important; border: none !important; 
+        display: flex !important; justify-content: center !important; align-items: center !important;
+        text-decoration: none !important; transition: all 0.3s ease;
     }
     
-    /* HOVER: Texto en Blanco puro al pasar el ratón */
-    div.stButton > button:hover, div.stDownloadButton > button:hover {
-        background-color: #359fb4 !important;
-        color: #ffffff !important;
-        border: none !important;
+    div.stButton > button:hover, div.stDownloadButton > button:hover, div.stLinkButton > a:hover {
+        background-color: #359fb4 !important; color: #ffffff !important;
     }
 
-    /* Caja de introducción */
-    .intro-box { 
-        background-color: #1a1a1a; 
-        padding: 12px; 
-        border-radius: 10px; 
-        border-left: 5px solid #3EB1C8; 
-        margin-bottom: 15px; 
-    }
-
-    /* Ajustes para el índice rápido */
-    .stExpander {
-        background-color: #111111 !important;
-        border: 1px solid #333 !important;
-    }
+    .intro-box { background-color: #1a1a1a; padding: 12px; border-radius: 10px; border-left: 5px solid #3EB1C8; margin-bottom: 15px; }
     a { color: #3EB1C8 !important; text-decoration: none; font-weight: bold; }
     </style>
     """, unsafe_allow_html=True)
@@ -120,11 +113,14 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# BUSCADOR
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
+# ÍNDICE RÁPIDO
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
         df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
+        # Usamos st.write con la tabla HTML
         st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower() or search_query in app["cat"].lower()]
@@ -152,13 +148,7 @@ if apps_filtradas:
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
-                    st.download_button(
-                        label="📂 Manual",
-                        data=f,
-                        file_name=app['pdf'],
-                        mime="application/pdf",
-                        key=f"dl_{i}"
-                    )
+                    st.download_button(label="📂 Manual", data=f, file_name=app['pdf'], mime="application/pdf", key=f"dl_{i}")
             else:
                 st.button("📄 Sin Manual", disabled=True, key=f"none_{i}")
 
