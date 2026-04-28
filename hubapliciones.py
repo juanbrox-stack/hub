@@ -15,11 +15,12 @@ def get_svg_base64(svg_path):
     except:
         return None
 
-# --- LISTA COMPLETA DE APPS (22 aplicaciones ahora) ---
+# --- LISTA COMPLETA DE APPS (23 aplicaciones) ---
 apps = [
-    {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año. DESACTIVADA", "color": "#FAF9F5", "cat": "BI", "pdf": "Marketplaces.pdf"},
+    {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año.", "color": "#FAF9F5", "cat": "BI", "pdf": "Marketplaces.pdf"},
+    {"nombre": "Calculadora ROI Automatización", "url": "https://calculadoraretornoinversion.streamlit.app/", "icon": "marketplaces.svg", "desc": "Calcula el ahorro y rentabilidad de proyectos de automatización.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Calculadora_ROI_Automatizacion.pdf"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
-    {"nombre": "Concatenador URLs PrestaShop", "url": "https://concatenarurl.streamlit.app/", "icon": "marketplaces.svg", "desc": "Concatena URLs y creación fichero de subida de imágenes para PrestaShop.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Extractor de URLs para PrestaShop.pdf"},
+    {"nombre": "Extractor de URLs para PrestaShop", "url": "https://concatenarurl.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de URLs absolutas para imágenes de productos.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Extractor de URLs para PrestaShop.pdf"},
     {"nombre": "Cecotec Downloader", "url": "https://cecotec-downloader.streamlit.app", "icon": "cecotec-downloader.svg", "desc": "Descarga de catálogos y datos de la web de Cecotec.", "color": "#FAF9F5", "cat": "Scraping", "pdf": "Cecotec Downloader.pdf"},
     {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación de fichero de características técnicas PrestaShop.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Features PS.pdf"},
     {"nombre": "Características 2026", "url": "https://caracteristicaspsturaco2026.streamlit.app/", "icon": "featuresps.svg", "desc": "Gestión avanzada de características PrestaShop 2026.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Características 2026.pdf"},
