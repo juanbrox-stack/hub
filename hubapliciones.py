@@ -42,33 +42,61 @@ apps = [
     {"nombre": "Variaciones Cdiscount", "url": "https://variacionescdiscount.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de variaciones específicas para Cdiscount.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Variaciones Cdiscount.pdf"}
 ]
 
-# Estilos CSS (Versión Estable Modo Oscuro)
+# Estilos CSS
 st.markdown("""
     <style>
+    /* Fondo Negro general */
     .stApp { background-color: #000000; color: #ffffff; }
     h1, h2, h3, label, span, .stMarkdown { color: #ffffff !important; }
+    
+    /* Textos dentro de la tarjeta crema */
     .card-title { color: #111111 !important; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
     .card-desc { color: #333333 !important; font-size: 0.85rem; margin-top: 5px; line-height: 1.2; font-weight: 500; }
+    
+    /* Tarjeta Cream #FAF9F5 */
     .app-card {
         padding: 12px 15px; border-radius: 12px; border: 1px solid #333;
         text-align: center; min-height: 145px; display: flex;
         flex-direction: column; justify-content: center; align-items: center; margin-bottom: 10px;
         background-color: #FAF9F5;
     }
+
+    /* Centrado de bloques de botones */
     [data-testid="stVerticalBlock"] > div:has(div.stButton), 
-    [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton) {
+    [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton),
+    [data-testid="stVerticalBlock"] > div:has(div.stLinkButton) {
         display: flex; justify-content: center; width: 100%;
     }
-    div.stButton > button, div.stDownloadButton > button {
-        background-color: #3EB1C8 !important; color: #E0E0E0 !important;
-        border-radius: 8px !important; font-weight: bold !important; font-size: 0.8rem !important; 
-        height: 2.6em !important; width: 160px !important; margin: 5px auto !important; 
-        border: none !important; display: flex; justify-content: center; align-items: center;
+
+    /* ESTILO UNIFICADO PARA BOTONES (Normal, Download y Link) */
+    div.stButton > button, 
+    div.stDownloadButton > button,
+    div.stLinkButton > a {
+        background-color: #3EB1C8 !important; 
+        color: #E0E0E0 !important; /* Gris claro */
+        border-radius: 8px !important; 
+        font-weight: bold !important; 
+        font-size: 0.8rem !important; 
+        height: 2.8em !important; 
+        width: 160px !important; 
+        margin: 5px auto !important; 
+        border: none !important; 
+        display: flex !important;
+        justify-content: center !important; 
+        align-items: center !important;
+        text-decoration: none !important; /* Para el link */
         transition: all 0.3s ease;
     }
-    div.stButton > button:hover, div.stDownloadButton > button:hover {
-        background-color: #359fb4 !important; color: #ffffff !important;
+    
+    /* HOVER PARA TODOS */
+    div.stButton > button:hover, 
+    div.stDownloadButton > button:hover,
+    div.stLinkButton > a:hover {
+        background-color: #359fb4 !important;
+        color: #ffffff !important;
+        border: none !important;
     }
+
     .intro-box { background-color: #1a1a1a; padding: 12px; border-radius: 10px; border-left: 5px solid #3EB1C8; margin-bottom: 15px; }
     .stExpander { background-color: #111111 !important; border: 1px solid #333 !important; }
     a { color: #3EB1C8 !important; text-decoration: none; font-weight: bold; }
@@ -111,6 +139,7 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
+            # BOTÓN MANUAL
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
@@ -118,6 +147,7 @@ if apps_filtradas:
             else:
                 st.button("📄 Sin Manual", disabled=True, key=f"none_{i}")
 
+            # BOTONES DE ACCESO (Abrir Aplicación)
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1: st.link_button("❶ Conv", app['prior_url'], use_container_width=True)
