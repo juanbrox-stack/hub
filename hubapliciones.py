@@ -31,24 +31,24 @@ apps = [
     {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación de fichero de características técnicas PrestaShop.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Features PS.pdf"},
     {"nombre": "Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico de categorías Amazon vs PrestaShop.", "color": "#FAF9F5", "cat": "Logística", "pdf": "Map Categories.pdf"},
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año.", "color": "#FAF9F5", "cat": "BI", "pdf": "Marketplaces.pdf"},
+    {"nombre": "MM Category Explorer", "url": "https://atributosmediamarkt.streamlit.app/", "icon": "marketplaces.svg", "desc": "Explorador de categorías y atributos específicos para MediaMarkt.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Manual_MM_Category_Explorer.pdf"},
     {"nombre": "PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Fichero de subida de novedades a PrestaShop.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "PS Bridge.pdf"},
     {"nombre": "Recortador Cadenas", "url": "https://recortadorcadenastexto.streamlit.app/", "icon": "marketplaces.svg", "desc": "Limpieza y recorte de longitud de textos.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Recortador Cadenas.pdf"},
     {"nombre": "Reviews Tracker", "url": "https://reviewstracker.streamlit.app", "icon": "marketplaces.svg", "desc": "Seguimiento y análisis de reseñas de clientes.", "color": "#FAF9F5", "cat": "Marketing", "pdf": "Reviews Tracker.pdf"},
     {"nombre": "Revisar URL Fotos", "url": "https://revisarurlimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Validación masiva de URLs de imágenes (Evita 404).", "color": "#FAF9F5", "cat": "Calidad", "pdf": "Revisar URL Fotos.pdf"},
-    {"nombre": "Seguimientos Amazon (por API)", "url": "https://seguimientosamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Seguimiento y control de pedidos en Amazon.", "color": "#FAF9F5", "cat": "Logística", "pdf": "Seguimientos Amazon.pdf"},
-    {"nombre": "Stock Amazon (por API)", "url": "https://stockamazon.streamlit.app", "icon": "stockamazon.svg", "desc": "Gestión de stock (convertir antes si no es .xlsx).", "color": "#FAF9F5", "cat": "Stock", "has_step_prior": True, "prior_url": "https://convertirexcels.streamlit.app/", "pdf": "Stock Amazon.pdf"},
+    {"nombre": "Seguimientos Amazon", "url": "https://seguimientosamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Seguimiento y control de pedidos en Amazon.", "color": "#FAF9F5", "cat": "Logística", "pdf": "Seguimientos Amazon.pdf"},
+    {"nombre": "Stock Amazon", "url": "https://stockamazon.streamlit.app", "icon": "stockamazon.svg", "desc": "Gestión de stock (convertir antes si no es .xlsx).", "color": "#FAF9F5", "cat": "Stock", "has_step_prior": True, "prior_url": "https://convertirexcels.streamlit.app/", "pdf": "Stock Amazon.pdf"},
     {"nombre": "Tipo Dispositivo", "url": "https://tipodispositivo.streamlit.app/", "icon": "marketplaces.svg", "desc": "Identificación del tipo de dispositivo de acceso.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Tipo Dispositivo.pdf"},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Subida a Cecopartners de pedidos automatizada.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Unidad Nueva.pdf"},
     {"nombre": "Variaciones Cdiscount", "url": "https://variacionescdiscount.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de variaciones específicas para Cdiscount.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Variaciones Cdiscount.pdf"}
 ]
 
-# Estilos CSS Corregidos
+# Estilos CSS
 st.markdown("""
     <style>
-    /* 1. Fondo Negro general */
     .stApp { background-color: #000000; color: #ffffff; }
     
-    /* 2. BUSCADOR: Forzar visibilidad del texto y el label */
+    /* Buscador */
     [data-testid="stTextInput"] label p { color: #ffffff !important; font-weight: bold; }
     [data-testid="stTextInput"] input { 
         color: #ffffff !important; 
@@ -56,19 +56,15 @@ st.markdown("""
         border: 1px solid #333 !important;
     }
 
-    /* 3. ÍNDICE (Expander): Forzar fondo oscuro y texto blanco */
-    .stExpander {
-        background-color: #000000 !important;
-        border: 1px solid #333 !important;
-    }
+    /* Índice (Expander) */
+    .stExpander { background-color: #000000 !important; border: 1px solid #333 !important; }
     .stExpander [data-testid="stHeader"] p { color: #ffffff !important; font-weight: bold; }
-    .stExpander [data-testid="stExpanderDetails"] { background-color: #000000 !important; color: #ffffff !important; }
+    .stExpander [data-testid="stExpanderDetails"] { background-color: #000000 !important; }
     
-    /* Estilo de la tabla dentro del índice */
-    table { background-color: #000000 !important; color: #ffffff !important; border: 1px solid #333; }
+    table { background-color: #000000 !important; color: #ffffff !important; }
     th { color: #3EB1C8 !important; }
 
-    /* 4. TARJETAS (Mantenemos Cream #FAF9F5) */
+    /* Tarjetas */
     .card-title { color: #111111 !important; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
     .card-desc { color: #333333 !important; font-size: 0.85rem; margin-top: 5px; line-height: 1.2; font-weight: 500; }
     .app-card {
@@ -78,7 +74,7 @@ st.markdown("""
         background-color: #FAF9F5;
     }
 
-    /* 5. BOTONES (Turquesa #3EB1C8) */
+    /* Botones */
     [data-testid="stVerticalBlock"] > div:has(div.stButton), 
     [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton),
     [data-testid="stVerticalBlock"] > div:has(div.stLinkButton) {
@@ -109,18 +105,15 @@ st.title("🚀 Panel Central de Aplicaciones Turaco")
 
 st.markdown("""
 <div class="intro-box">
-    <p style="margin:0; font-size:0.9rem; color:white;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b> de estructura.</p>
+    <p style="margin:0; font-size:0.9rem; color:white;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b>.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# BUSCADOR
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# ÍNDICE RÁPIDO
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
         df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a['cat'], "Función": a['desc']} for a in apps])
-        # Usamos st.write con la tabla HTML
         st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower() or search_query in app["cat"].lower()]
@@ -144,7 +137,6 @@ if apps_filtradas:
                 </div>
                 """, unsafe_allow_html=True)
             
-            # BOTÓN MANUAL
             pdf_path = f"Estructura PDF/{app['pdf']}"
             if os.path.exists(pdf_path):
                 with open(pdf_path, "rb") as f:
@@ -152,7 +144,6 @@ if apps_filtradas:
             else:
                 st.button("📄 Sin Manual", disabled=True, key=f"none_{i}")
 
-            # BOTONES DE ACCESO
             if app.get("has_step_prior"):
                 c1, c2 = st.columns(2)
                 with c1: st.link_button("❶ Conv", app['prior_url'], use_container_width=True)
