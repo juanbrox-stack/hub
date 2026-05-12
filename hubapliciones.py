@@ -19,6 +19,7 @@ def get_svg_base64(svg_path):
 apps = [
     {"nombre": "Actualiza URLs", "url": "https://actualizaurlsimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Edición masiva de rutas de imágenes en ficheros.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Actualiza URLs.pdf"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
+    {"nombre": "Amazon Bulk Master", "url": "https://rellenaplantillasamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Rellena plantillas de Amazon de forma masiva y automatizada.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Manual_Amazon_Bulk_Master_v101_es-ES.pdf"},
     {"nombre": "Amazon Facturas", "url": "https://transformarexcelamazonfacturas.streamlit.app/", "icon": "stockamazon.svg", "desc": "Transformación de ficheros para facturación Amazon.", "color": "#FAF9F5", "cat": "Facturación", "pdf": "Amazon Facturas.pdf"},
     {"nombre": "Calculadora ROI Automatización", "url": "https://calculadoraretornoinversion.streamlit.app/", "icon": "marketplaces.svg", "desc": "Calcula el ahorro y rentabilidad de proyectos de automatización.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Calculadora_ROI_Automatizacion.pdf"},
     {"nombre": "Características 2026", "url": "https://caracteristicaspsturaco2026.streamlit.app/", "icon": "featuresps.svg", "desc": "Gestión avanzada de características PrestaShop 2026.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Características 2026.pdf"},
@@ -72,7 +73,7 @@ st.markdown("""
         background-color: #FAF9F5;
     }
 
-    /* Botonera Centrada Turquesa #3EB1C8 */
+    /* Botones Centrados y Turquesa */
     [data-testid="stVerticalBlock"] > div:has(div.stButton), 
     [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton),
     [data-testid="stVerticalBlock"] > div:has(div.stLinkButton) {
