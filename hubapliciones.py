@@ -31,6 +31,7 @@ apps = [
     {"nombre": "Errors", "url": "https://errors.streamlit.app/", "icon": "marketplaces.svg", "desc": "Analizar errores de publicación Mirakl / Marketplaces.", "color": "#FAF9F5", "cat": "Errores", "pdf": "Errors.pdf"},
     {"nombre": "Extractor de URLs para PrestaShop", "url": "https://concatenarurl.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de URLs absolutas para imágenes de productos.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Extractor de URLs para PrestaShop.pdf"},
     {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación de fichero de características técnicas PrestaShop.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Features PS.pdf"},
+    {"nombre": "InformeSeller", "url": "https://informeseller.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generación de informes detallados de ventas y rendimiento Seller.", "color": "#FAF9F5", "cat": "BI", "pdf": "InformeSeller.pdf"},
     {"nombre": "Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico de categorías Amazon vs PrestaShop.", "color": "#FAF9F5", "cat": "Logística", "pdf": "Map Categories.pdf"},
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año.", "color": "#FAF9F5", "cat": "BI", "pdf": "Marketplaces.pdf"},
     {"nombre": "MM Category Explorer", "url": "https://atributosmediamarkt.streamlit.app/", "icon": "marketplaces.svg", "desc": "Explorador de categorías y atributos específicos para MediaMarkt.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Manual_MM_Category_Explorer.pdf"},
@@ -104,7 +105,7 @@ st.title("🚀 Panel Central de Aplicaciones Turaco")
 
 st.markdown("""
 <div class="intro-box">
-    <p style="margin:0; font-size:0.9rem; color:white;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b>.</p>
+    <p style="margin:0; font-size:0.9rem; color:white;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b> de estructura.</p>
 </div>
 """, unsafe_allow_html=True)
 
