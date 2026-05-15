@@ -31,6 +31,7 @@ apps = [
     {"nombre": "Errors", "url": "https://errors.streamlit.app/", "icon": "marketplaces.svg", "desc": "Analizar errores de publicación Mirakl / Marketplaces.", "color": "#FAF9F5", "cat": "Errores", "pdf": "Errors.pdf"},
     {"nombre": "Extractor de URLs para PrestaShop", "url": "https://concatenarurl.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de URLs absolutas para imágenes de productos.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Extractor de URLs para PrestaShop.pdf"},
     {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación de fichero de características técnicas PrestaShop.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Features PS.pdf"},
+    {"nombre": "Generador Tarifas Amazon", "url": "https://generarplantillatarifasamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Generación de plantillas de tarifas personalizadas para Amazon.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Manual_Generador_Tarifas_Amazon.pdf"},
     {"nombre": "InformeSeller", "url": "https://informeseller.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generación de informes detallados de ventas y rendimiento Seller.", "color": "#FAF9F5", "cat": "BI", "pdf": "InformeSeller.pdf"},
     {"nombre": "Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico de categorías Amazon vs PrestaShop.", "color": "#FAF9F5", "cat": "Logística", "pdf": "Map Categories.pdf"},
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año.", "color": "#FAF9F5", "cat": "BI", "pdf": "Marketplaces.pdf"},
@@ -52,7 +53,7 @@ st.markdown("""
     <style>
     .stApp { background-color: #000000; color: #ffffff; }
     
-    /* Buscador */
+    /* Forzar visibilidad Buscador */
     [data-testid="stTextInput"] label p { color: #ffffff !important; font-weight: bold; }
     [data-testid="stTextInput"] input { 
         color: #ffffff !important; 
@@ -60,10 +61,14 @@ st.markdown("""
         border: 1px solid #333 !important;
     }
 
-    /* Índice (Expander) */
+    /* Forzar visibilidad Índice (Expander) */
     .stExpander { background-color: #000000 !important; border: 1px solid #333 !important; }
     .stExpander [data-testid="stHeader"] p { color: #ffffff !important; font-weight: bold; }
+    .stExpander [data-testid="stExpanderDetails"] { background-color: #000000 !important; }
     
+    table { background-color: #000000 !important; color: #ffffff !important; }
+    th { color: #3EB1C8 !important; }
+
     /* Tarjetas Cream */
     .card-title { color: #111111 !important; margin: 0; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
     .card-desc { color: #333333 !important; font-size: 0.85rem; margin-top: 5px; line-height: 1.2; font-weight: 500; }
@@ -74,7 +79,7 @@ st.markdown("""
         background-color: #FAF9F5;
     }
 
-    /* Botones Centrados y Turquesa */
+    /* Botonera Turquesa */
     [data-testid="stVerticalBlock"] > div:has(div.stButton), 
     [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton),
     [data-testid="stVerticalBlock"] > div:has(div.stLinkButton) {
@@ -105,7 +110,7 @@ st.title("🚀 Panel Central de Aplicaciones Turaco")
 
 st.markdown("""
 <div class="intro-box">
-    <p style="margin:0; font-size:0.9rem; color:white;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b> de estructura.</p>
+    <p style="margin:0; font-size:0.9rem; color:white;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b>.</p>
 </div>
 """, unsafe_allow_html=True)
 
