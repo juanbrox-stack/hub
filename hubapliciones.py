@@ -19,6 +19,7 @@ def get_svg_base64(svg_path):
 apps = [
     {"nombre": "Actualiza URLs", "url": "https://actualizaurlsimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Edición masiva de rutas de imágenes en ficheros.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Actualiza URLs.pdf"},
     {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
+    {"nombre": "Actualizador Tarifas Herramientas", "url": "https://creaficherostarifasherramientas.streamlit.app/", "icon": "actualizardortarifas.svg", "desc": "Generador y actualizador automatizado de ficheros de tarifas de herramientas.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Manual_de_Usuario_Actualizador_Tarifas.pdf"},
     {"nombre": "Amazon Bulk Master", "url": "https://rellenaplantillasamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Rellena plantillas de Amazon de forma masiva y automatizada.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Manual_Amazon_Bulk_Master_v101_es-ES.pdf"},
     {"nombre": "Amazon Facturas", "url": "https://transformarexcelamazonfacturas.streamlit.app/", "icon": "stockamazon.svg", "desc": "Transformación de ficheros para facturación Amazon.", "color": "#FAF9F5", "cat": "Facturación", "pdf": "Amazon Facturas.pdf"},
     {"nombre": "Calculadora ROI Automatización", "url": "https://calculadoraretornoinversion.streamlit.app/", "icon": "marketplaces.svg", "desc": "Calcula el ahorro y rentabilidad de proyectos de automatización.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Calculadora_ROI_Automatizacion.pdf"},
@@ -48,7 +49,8 @@ apps = [
     {"nombre": "Stock Amazon", "url": "https://stockamazon.streamlit.app", "icon": "stockamazon.svg", "desc": "Gestión de stock (convertir antes si no es .xlsx).", "color": "#FAF9F5", "cat": "Stock", "has_step_prior": True, "prior_url": "https://convertirexcels.streamlit.app/", "pdf": "Stock Amazon.pdf"},
     {"nombre": "Tipo Dispositivo", "url": "https://tipodispositivo.streamlit.app/", "icon": "marketplaces.svg", "desc": "Identificación del tipo de dispositivo de acceso.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Tipo Dispositivo.pdf"},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Subida a Cecopartners de pedidos automatizada.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Unidad Nueva.pdf"},
-    {"nombre": "Variaciones Cdiscount", "url": "https://variacionescdiscount.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de variaciones específicas para Cdiscount.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Variaciones Cdiscount.pdf"}
+    {"nombre": "Variaciones Cdiscount", "url": "https://variacionescdiscount.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de variaciones específicas para Cdiscount.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Variaciones Cdiscount.pdf"},
+    {"nombre": "Volcar Pedidos Cecotec", "url": "https://volcarpedidos.streamlit.app/", "icon": "marketplaces.svg", "desc": "Automatización para el volcado masivo e integración de pedidos de Cecotec.", "color": "#FAF9F5", "cat": "Logística", "pdf": "Manual_Usuario_Volcar_Pedidos_Cecotec.pdf"}
 ]
 
 # Estilos CSS
