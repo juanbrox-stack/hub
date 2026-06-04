@@ -54,6 +54,7 @@ grupos = [
             {"nombre": "Actualizador de Tarifas",                      "url": "https://actualizardortarifas.streamlit.app",           "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas; genera el fichero completo.",              "pdf": "Actualizador Tarifas.pdf"},
             {"nombre": "Actualizador Tarifas Herramientas",             "url": "https://creaficherostarifasherramientas.streamlit.app/","icon": "actualizardortarifas.svg", "desc": "Generador y actualizador automatizado de ficheros de tarifas de herramientas.","pdf": "Manual_de_Usuario_Actualizador_Tarifas.pdf"},
             {"nombre": "Generador Plantilla Tarifas Amazon",            "url": "https://generarplantillatarifasamazon.streamlit.app/", "icon": "stockamazon.svg",          "desc": "Generación de plantillas de tarifas personalizadas para Amazon.",              "pdf": "Manual_Generador_Tarifas_Amazon.pdf"},
+            {"nombre": "Comparar Precios de Tarifa", "url": "https://compararprecios.streamlit.app/", "icon": "actualizardortarifas.svg", "desc": "Auditoría de precios de tarifa vs. fichero Herramientas por país/canal.", "pdf": "Manual_Comparar_Precios_Tarifa.pdf"},
         ],
     },
     {
