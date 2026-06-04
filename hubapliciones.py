@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 # Configuración de página
-st.set_page_config(page_title="Hub de Aplicaciones Turaco", layout="wide", page_icon="🚀")
+st.set_page_config(page_title="Hub de Aplicaciones", layout="wide", page_icon="🚀")
 
 def get_svg_base64(svg_path):
     """Obtiene el base64 de un SVG para insertarlo en el HTML."""
@@ -142,11 +142,11 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🚀 Panel Central de Aplicaciones Turaco")
+st.title("🚀 Panel Central de Aplicaciones")
 
 st.markdown("""
 <div class="intro-box">
-    <p style="margin:0; font-size:0.9rem; color:white;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida o descarga los <b>Manuales</b> de estructura.</p>
+    <p style="margin:0; font-size:0.9rem; color:white;">Hub de herramientas para la gestión de Marketplaces. Usa el <b>Índice</b> para navegación rápida y descarga los <b>Manuales</b> para aprender las funcionalidades de cada una. Desarrollado por Juan Brox.</p>
 </div>
 """, unsafe_allow_html=True)
 
