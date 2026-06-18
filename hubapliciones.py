@@ -116,44 +116,43 @@ st.markdown("""
         height: 145px;
     }
 
-    /* Caja de tarea prioritaria superior */
-    .priority-container {
-        background-color: #141414;
-        padding: 15px;
-        border-radius: 10px;
-        border: 1px solid #333;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    /* Botonera Turquesa */
+    /* Botonera General Turquesa */
     [data-testid="stVerticalBlock"] > div:has(div.stButton), 
     [data-testid="stVerticalBlock"] > div:has(div.stDownloadButton),
     [data-testid="stVerticalBlock"] > div:has(div.stLinkButton) {
         display: flex; justify-content: center; width: 100%;
     }
 
+    /* CORRECCIÓN CENTRAL: Centrado absoluto, negrita fuerte y estructura de los textos largos en botones */
     div.stButton > button, div.stDownloadButton > button, div.stLinkButton > a {
         background-color: #3EB1C8 !important; 
         color: #E0E0E0 !important;
         border-radius: 8px !important; 
-        font-weight: bold !important; font-size: 0.8rem !important; 
-        height: 2.8em !important; width: 160px !important; 
-        margin: 5px auto !important; border: none !important; 
-        display: flex !important; justify-content: center !important; align-items: center !important;
-        text-decoration: none !important; transition: all 0.3s ease;
+        font-weight: 800 !important; /* Negrita extra para que resalte más */
+        font-size: 0.82rem !important; 
+        height: 3em !important; 
+        width: 160px !important; 
+        margin: 5px auto !important; 
+        border: none !important; 
+        display: flex !important; 
+        justify-content: center !important; 
+        align-items: center !important;
+        text-align: center !important; /* Forzar centrado de texto multilínea */
+        line-height: 1.2 !important;   /* Ajuste de espacio entre líneas del botón */
+        text-decoration: none !important; 
+        transition: all 0.3s ease;
     }
     
     div.stButton > button:hover, div.stDownloadButton > button:hover, div.stLinkButton > a:hover {
-        background-color: #359fb4 !important; color: #ffffff !important;
+        background-color: #359fb4 !important; 
+        color: #ffffff !important;
+        border: none !important;
     }
 
     /* Ajuste específico para el botón prioritario superior */
-    .priority-container div.stLinkButton > a {
+    .priority-row div.stLinkButton > a {
         width: 220px !important;
-        height: 3.2em !important;
+        height: 3.4em !important;
         font-size: 0.9rem !important;
         margin: 0 !important;
     }
@@ -171,7 +170,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# --- BOTÓN DIRECTO: TAREA DIARIA CRÍTICA (Control Desactivados) ---
+# --- BOTÓN DIRECTO CORREGIDO: CONTROL DESACTIVADOS ---
+st.markdown('<div class="priority-row">', unsafe_allow_html=True)
 p_col1, p_col2 = st.columns([3, 1])
 with p_col1:
     st.markdown("""
@@ -184,14 +184,15 @@ with p_col1:
     </div>
     """, unsafe_allow_html=True)
 with p_col2:
-    st.markdown('<div style="height: 12px;"></div>', unsafe_allow_html=True) # Buffer de alineación
+    st.markdown('<div style="height: 10px;"></div>', unsafe_allow_html=True) # Alineación vertical básica
     st.link_button("🔍 Control Desactivados", "https://controldesactivados.streamlit.app/", use_container_width=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div style="margin-top: 15px;"></div>', unsafe_allow_html=True)
 
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# --- BLOQUE VISUAL DE FLUJO SECUENCIAL (Solo visible si no se busca activamente) ---
+# --- BLOQUE VISUAL DE FLUJO SECUENCIAL ---
 if not search_query:
     st.markdown('<div class="workflow-container"><div class="workflow-title">🔄 Flujo de Trabajo Secuencial: Gestión de Pedidos Cecotec</div>', unsafe_allow_html=True)
     
