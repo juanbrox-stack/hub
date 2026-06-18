@@ -123,12 +123,11 @@ st.markdown("""
         display: flex; justify-content: center; width: 100%;
     }
 
-    /* CORRECCIÓN CENTRAL: Centrado absoluto, negrita fuerte y estructura de los textos largos en botones */
     div.stButton > button, div.stDownloadButton > button, div.stLinkButton > a {
         background-color: #3EB1C8 !important; 
         color: #E0E0E0 !important;
         border-radius: 8px !important; 
-        font-weight: 800 !important; /* Negrita extra para que resalte más */
+        font-weight: 800 !important; 
         font-size: 0.82rem !important; 
         height: 3em !important; 
         width: 160px !important; 
@@ -137,8 +136,8 @@ st.markdown("""
         display: flex !important; 
         justify-content: center !important; 
         align-items: center !important;
-        text-align: center !important; /* Forzar centrado de texto multilínea */
-        line-height: 1.2 !important;   /* Ajuste de espacio entre líneas del botón */
+        text-align: center !important; 
+        line-height: 1.2 !important;   
         text-decoration: none !important; 
         transition: all 0.3s ease;
     }
@@ -149,12 +148,15 @@ st.markdown("""
         border: none !important;
     }
 
-    /* Ajuste específico para el botón prioritario superior */
-    .priority-row div.stLinkButton > a {
-        width: 220px !important;
-        height: 3.4em !important;
-        font-size: 0.9rem !important;
-        margin: 0 !important;
+    /* Caja de Contenedor Superior */
+    .top-priority-container {
+        background-color: #141414; 
+        padding: 15px; 
+        border-radius: 10px; 
+        border: 1px solid #222; 
+        min-height: 80px; 
+        display: flex; 
+        align-items: center;
     }
 
     .intro-box { background-color: #1a1a1a; padding: 12px; border-radius: 10px; border-left: 5px solid #3EB1C8; margin-bottom: 15px; }
@@ -170,12 +172,11 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# --- BOTÓN DIRECTO CORREGIDO: CONTROL DESACTIVADOS ---
-st.markdown('<div class="priority-row">', unsafe_allow_html=True)
+# --- BOTÓN DIRECTO: TAREA DIARIA CRÍTICA ---
 p_col1, p_col2 = st.columns([3, 1])
 with p_col1:
     st.markdown("""
-    <div style="background-color: #141414; padding: 15px; border-radius: 10px; border: 1px solid #222; min-height: 80px; display: flex; align-items: center;">
+    <div class="top-priority-container">
         <span style="font-size: 1.3rem; margin-right: 12px;">⚠️</span>
         <div>
             <b style="color: #3EB1C8; font-size: 1.05rem;">Tarea Diaria Prioritaria: Control Desactivados</b><br>
@@ -184,15 +185,14 @@ with p_col1:
     </div>
     """, unsafe_allow_html=True)
 with p_col2:
-    st.markdown('<div style="height: 10px;"></div>', unsafe_allow_html=True) # Alineación vertical básica
+    st.markdown('<div style="height: 10px;"></div>', unsafe_allow_html=True) 
     st.link_button("🔍 Control Desactivados", "https://controldesactivados.streamlit.app/", use_container_width=True)
-st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div style="margin-top: 15px;"></div>', unsafe_allow_html=True)
 
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# --- BLOQUE VISUAL DE FLUJO SECUENCIAL ---
+# --- BLOQUE VISUAL DE FLUJO SECUENCIAL (Solo si no se busca) ---
 if not search_query:
     st.markdown('<div class="workflow-container"><div class="workflow-title">🔄 Flujo de Trabajo Secuencial: Gestión de Pedidos Cecotec</div>', unsafe_allow_html=True)
     
@@ -244,6 +244,7 @@ resultados_totales = apps_filtradas + flujo_filtrado
 
 st.markdown("---")
 
+# Renderizado correcto en bloques de la parrilla general
 if resultados_totales:
     cols = st.columns(4)
     for i, app in enumerate(resultados_totales):
