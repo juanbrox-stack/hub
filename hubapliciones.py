@@ -171,21 +171,21 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# --- BOTÓN DIRECTO: TAREA DIARIA CRÍTICA ---
+# --- BOTÓN DIRECTO: TAREA DIARIA CRÍTICA (Control Desactivados) ---
 p_col1, p_col2 = st.columns([3, 1])
 with p_col1:
     st.markdown("""
     <div style="background-color: #141414; padding: 15px; border-radius: 10px; border: 1px solid #222; min-height: 80px; display: flex; align-items: center;">
-        <span style="font-size: 1.3rem; margin-right: 12px;">📅</span>
+        <span style="font-size: 1.3rem; margin-right: 12px;">⚠️</span>
         <div>
-            <b style="color: #3EB1C8; font-size: 1.05rem;">Tarea Diaria Prioritaria</b><br>
-            <span style="color: #aaa; font-size: 0.85rem;">Acceso directo al flujo secuencial para el volcado e integración de pedidos diarios.</span>
+            <b style="color: #3EB1C8; font-size: 1.05rem;">Tarea Diaria Prioritaria: Control Desactivados</b><br>
+            <span style="color: #aaa; font-size: 0.85rem;">Acceso inmediato para la auditoría y control de activación de stock deshabilitado en catálogos.</span>
         </div>
     </div>
     """, unsafe_allow_html=True)
 with p_col2:
-    st.markdown('<div style="height: 12px;"></div>', unsafe_allow_html=True) # Pequeño buffer de alineación
-    st.link_button("⚡ Iniciar Volcado Pedidos", "https://volcarpedidos.streamlit.app/", use_container_width=True)
+    st.markdown('<div style="height: 12px;"></div>', unsafe_allow_html=True) # Buffer de alineación
+    st.link_button("🔍 Control Desactivados", "https://controldesactivados.streamlit.app/", use_container_width=True)
 
 st.markdown('<div style="margin-top: 15px;"></div>', unsafe_allow_html=True)
 
@@ -195,11 +195,9 @@ search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 if not search_query:
     st.markdown('<div class="workflow-container"><div class="workflow-title">🔄 Flujo de Trabajo Secuencial: Gestión de Pedidos Cecotec</div>', unsafe_allow_html=True)
     
-    # Creamos estructura de columnas alternando Apps y Flechas (Col, Flecha, Col, Flecha, Col)
     f_cols = st.columns([3, 0.5, 3, 0.5, 3])
-    
-    indices_flujo = [0, 2, 4] # Columnas correspondientes a las apps
-    arrows_flujo = [1, 3]    # Columnas correspondientes a las flechas
+    indices_flujo = [0, 2, 4]
+    arrows_flujo = [1, 3]
 
     for idx, app in enumerate(flujo_apps):
         with f_cols[indices_flujo[idx]]:
