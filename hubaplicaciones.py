@@ -61,8 +61,8 @@ flujo_apps = [
 
 # --- FLUJO SECUENCIAL PLYTIX -> PRESTASHOP ---
 flujo2_apps = [
-    {"nombre": "❶ Plytix Downloader", "url": "https://descargaspim.streamlit.app/", "icon": "marketplaces.svg", "desc": "Descarga masiva de activos y datos desde el PIM Plytix.", "pdf": "manual_plytix_downloader.pdf"},
-    {"nombre": "❷ PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Fichero de subida de novedades a PrestaShop.", "pdf": "PS Bridge.pdf"}
+        {"nombre": "❷ PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Fichero de subida de novedades a PrestaShop.", "pdf": "PS Bridge.pdf"},
+        {"nombre": "❶ Plytix Downloader", "url": "https://descargaspim.streamlit.app/", "icon": "marketplaces.svg", "desc": "Descarga masiva de activos y datos desde el PIM Plytix.", "pdf": "manual_plytix_downloader.pdf"}
 ]
 
 # Estilos CSS
