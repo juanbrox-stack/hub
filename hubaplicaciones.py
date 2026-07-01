@@ -15,54 +15,90 @@ def get_svg_base64(svg_path):
     except:
         return None
 
-# --- LISTA COMPLETA DE APPS GENERALES (Orden Alfabético - Sin Volcar Pedidos, PS Bridge y Plytix Downloader para evitar duplicados) ---
+# --- LISTA COMPLETA DE APPS GENERALES (Orden Alfabético - Apps agrupadas en flujos excluidas para evitar duplicados) ---
 apps = [
-    {"nombre": "Actualiza URLs", "url": "https://actualizaurlsimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Edición masiva de rutas de imágenes en ficheros.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Actualiza URLs.pdf"},
-    {"nombre": "Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Actualizador Tarifas.pdf"},
-    {"nombre": "Actualizador Tarifas Herramientas", "url": "https://creaficherostarifasherramientas.streamlit.app/", "icon": "actualizardortarifas.svg", "desc": "Generador y actualizador automatizado de ficheros de tarifas de herramientas.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Manual_de_Usuario_Actualizador_Tarifas.pdf"},
     {"nombre": "Amazon Bulk Master", "url": "https://rellenaplantillasamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Rellena plantillas de Amazon de forma masiva y automatizada.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Manual_Amazon_Bulk_Master_v101_es-ES.pdf"},
     {"nombre": "Amazon Facturas", "url": "https://transformarexcelamazonfacturas.streamlit.app/", "icon": "stockamazon.svg", "desc": "Transformación de ficheros para facturación Amazon.", "color": "#FAF9F5", "cat": "Facturación", "pdf": "Amazon Facturas.pdf"},
     {"nombre": "Calculadora ROI Automatización", "url": "https://calculadoraretornoinversion.streamlit.app/", "icon": "marketplaces.svg", "desc": "Calcula el ahorro y rentabilidad de proyectos de automatización.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Calculadora_ROI_Automatizacion.pdf"},
-    {"nombre": "Características 2026", "url": "https://caracteristicaspsturaco2026.streamlit.app/", "icon": "featuresps.svg", "desc": "Gestión avanzada de características PrestaShop 2026.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Características 2026.pdf"},
     {"nombre": "Cecotec Downloader", "url": "https://cecotec-downloader.streamlit.app", "icon": "cecotec-downloader.svg", "desc": "Descarga de catálogos y datos de la web de Cecotec.", "color": "#FAF9F5", "cat": "Scraping", "pdf": "Cecotec Downloader.pdf"},
     {"nombre": "Comisiones MediaMarkt", "url": "https://comisionesmediamarkt.streamlit.app/", "icon": "marketplaces.svg", "desc": "Cálculo y desglose de comisiones para el marketplace de MediaMarkt.", "color": "#FAF9F5", "cat": "Facturación", "pdf": "Manual_Comisiones_MediaMarkt_v12.pdf"},
-    {"nombre": "Comparador Bestseller", "url": "https://comparadorbestseller.streamlit.app/", "icon": "marketplaces.svg", "desc": "Herramienta avanzada de comparación y auditoría para productos Bestseller.", "color": "#FAF9F5", "cat": "Auditoría", "pdf": "Manual_Usuario_Comparador_Bestseller_v3.pdf"},
-    {"nombre": "Comparar PS vs Amazon", "url": "https://compararpsvsamazon.streamlit.app/", "icon": "marketplaces.svg", "desc": "Auditoría de catálogo PrestaShop vs Amazon.", "color": "#FAF9F5", "cat": "Auditoría", "pdf": "Comparar PS vs Amazon.pdf"},
-    {"nombre": "Control Desactivados", "url": "https://controldesactivados.streamlit.app/", "icon": "marketplaces.svg", "desc": "Herramienta de auditoría y control de activación para stock deshabilitado.", "color": "#FAF9F5", "cat": "Stock", "pdf": "Manual_Control_Activacion_Stock.pdf"},
     {"nombre": "Dividir Excel", "url": "https://dividirexcel.streamlit.app/", "icon": "marketplaces.svg", "desc": "Separa archivos Excel en múltiples pestañas o ficheros.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Dividir Excel.pdf"},
-    {"nombre": "Errores BeezUP", "url": "https://erroresbeezup.streamlit.app/", "icon": "marketplaces.svg", "desc": "Gestor de errores de publicación específicos de BeezUP.", "color": "#FAF9F5", "cat": "Errores", "pdf": "Errores BeezUP.pdf"},
-    {"nombre": "Errors", "url": "https://errors.streamlit.app/", "icon": "marketplaces.svg", "desc": "Analizar errores de publicación Mirakl / Marketplaces.", "color": "#FAF9F5", "cat": "Errores", "pdf": "Errors.pdf"},
-    {"nombre": "Extractor de URLs para PrestaShop", "url": "https://concatenarurl.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de URLs absolutas para imágenes de productos.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Extractor de URLs para PrestaShop.pdf"},
-    {"nombre": "Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación de fichero de características técnicas PrestaShop.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Features PS.pdf"},
-    {"nombre": "Generador Tarifas Amazon", "url": "https://generarplantillatarifasamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Generación de plantillas de tarifas personalizadas para Amazon.", "color": "#FAF9F5", "cat": "Tarifas", "pdf": "Manual_Generador_Tarifas_Amazon.pdf"},
     {"nombre": "Informe Ventas MKT", "url": "https://automatizacionventasmkt.streamlit.app/", "icon": "marketplaces.svg", "desc": "Análisis estratégico y automatización de informes para el departamento de Marketing.", "color": "#FAF9F5", "cat": "Marketing", "pdf": "Manual_Usuario_Informe_Ventas_MKT.pdf"},
     {"nombre": "InformeSeller", "url": "https://informeseller.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generación de informes detallados de ventas y rendimiento Seller.", "color": "#FAF9F5", "cat": "BI", "pdf": "InformeSeller.pdf"},
-    {"nombre": "Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico de categorías Amazon vs PrestaShop.", "color": "#FAF9F5", "cat": "Logística", "pdf": "Map Categories.pdf"},
     {"nombre": "Marketplaces", "url": "https://multitienda-bi-group.streamlit.app", "icon": "marketplaces.svg", "desc": "BI de pedidos, análisis por marketplaces y año.", "color": "#FAF9F5", "cat": "BI", "pdf": "Marketplaces.pdf"},
-    {"nombre": "MM Category Explorer", "url": "https://atributosmediamarkt.streamlit.app/", "icon": "marketplaces.svg", "desc": "Explorador de categorías y atributos específicos para MediaMarkt.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Manual_MM_Category_Explorer.pdf"},
     {"nombre": "Recortador Cadenas", "url": "https://recortadorcadenastexto.streamlit.app/", "icon": "marketplaces.svg", "desc": "Limpieza y recorte de longitud de textos.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Recortador Cadenas.pdf"},
     {"nombre": "Reviews Tracker", "url": "https://reviewstracker.streamlit.app", "icon": "marketplaces.svg", "desc": "Seguimiento y análisis de reseñas de clientes.", "color": "#FAF9F5", "cat": "Marketing", "pdf": "Reviews Tracker.pdf"},
-    {"nombre": "Revisar URL Fotos", "url": "https://revisarurlimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Validación masiva de URLs de imágenes (Evita 404).", "color": "#FAF9F5", "cat": "Calidad", "pdf": "Revisar URL Fotos.pdf"},
     {"nombre": "Seguimientos Amazon", "url": "https://seguimientosamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Seguimiento y control de pedidos en Amazon.", "color": "#FAF9F5", "cat": "Logística", "pdf": "Seguimientos Amazon.pdf"},
     {"nombre": "SellerFlex FR", "url": "https://sellerflexfr.streamlit.app/", "icon": "marketplaces.svg", "desc": "Gestión y optimización de envíos a través de SellerFlex para Francia.", "color": "#FAF9F5", "cat": "Logística", "pdf": "Manual_Usuario_SellerFlex_FR.pdf"},
-    {"nombre": "SKUs Faltantes Amazon", "url": "https://skusfaltantesamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Auditoría y comparativa de productos creados para la detección de SKUs faltantes en Amazon.", "color": "#FAF9F5", "cat": "Auditoría", "pdf": "ManualCompartivaProductosCreadosAmazonJabiruTuraco.pdf"},
-    {"nombre": "Stock Amazon", "url": "https://stockamazon.streamlit.app", "icon": "stockamazon.svg", "desc": "Gestión de stock (convertir antes si no es .xlsx).", "color": "#FAF9F5", "cat": "Stock", "has_step_prior": True, "prior_url": "https://convertirexcels.streamlit.app/", "pdf": "Stock Amazon.pdf"},
     {"nombre": "Tipo Dispositivo", "url": "https://tipodispositivo.streamlit.app/", "icon": "marketplaces.svg", "desc": "Identificación del tipo de dispositivo de acceso.", "color": "#FAF9F5", "cat": "Utilidad", "pdf": "Tipo Dispositivo.pdf"},
     {"nombre": "Unidad Nueva", "url": "https://unidadnueva.streamlit.app", "icon": "unidadnueva.svg", "desc": "Subida a Cecopartners de pedidos automatizada.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Unidad Nueva.pdf"},
     {"nombre": "Variaciones Cdiscount", "url": "https://variacionescdiscount.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de variaciones específicas para Cdiscount.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Variaciones Cdiscount.pdf"}
 ]
 
-# --- FLUJO SECUENCIAL Gestión de pedidos ---
+# --- FLUJO SECUENCIAL 1: GESTIÓN DE PEDIDOS CECOTEC ---
 flujo_apps = [
     {"nombre": "❶ Volcar Pedidos Cecotec", "url": "https://volcarpedidos.streamlit.app/", "icon": "marketplaces.svg", "desc": "Automatización para el volcado masivo e integración de pedidos.", "pdf": "Manual_Usuario_Volcar_Pedidos_Cecotec.pdf"},
     {"nombre": "❷ Buscar Sustituto", "url": "https://buscarsustituto.streamlit.app/", "icon": "marketplaces.svg", "desc": "Localización y asignación de referencias alternativas de stock.", "pdf": "Buscar_Sustituto.pdf"},
     {"nombre": "❸ Borradores Cecopartners", "url": "https://borradorescecopartners.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generación final y carga de borradores en la plataforma Cecopartners.", "pdf": "Borradores_Cecopartners.pdf"}
 ]
 
-# --- FLUJO SECUENCIAL Creación de novedades en PrestaShop ---
+# --- FLUJO SECUENCIAL 2: PLYTIX -> PRESTASHOP ---
 flujo2_apps = [
-        {"nombre": "❷ PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Fichero de subida de novedades a PrestaShop.", "pdf": "PS Bridge.pdf"},
-        {"nombre": "❶ Plytix Downloader", "url": "https://descargaspim.streamlit.app/", "icon": "marketplaces.svg", "desc": "Descarga masiva de activos y datos desde el PIM Plytix.", "pdf": "manual_plytix_downloader.pdf"}
+    {"nombre": "❶ Plytix Downloader", "url": "https://descargaspim.streamlit.app/", "icon": "marketplaces.svg", "desc": "Descarga masiva de activos y datos desde el PIM Plytix.", "pdf": "manual_plytix_downloader.pdf"},
+    {"nombre": "❷ PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Fichero de subida de novedades a PrestaShop.", "pdf": "PS Bridge.pdf"}
+]
+
+# --- FLUJO SECUENCIAL 3: TARIFAS ---
+flujo3_apps = [
+    {"nombre": "❶ Actualizador Tarifas", "url": "https://actualizardortarifas.streamlit.app", "icon": "actualizardortarifas.svg", "desc": "Gestión y actualización de tarifas, genera el fichero completo.", "pdf": "Actualizador Tarifas.pdf"},
+    {"nombre": "❷ Actualizador Tarifas Herramientas", "url": "https://creaficherostarifasherramientas.streamlit.app/", "icon": "actualizardortarifas.svg", "desc": "Generador y actualizador automatizado de ficheros de tarifas de herramientas.", "pdf": "Manual_de_Usuario_Actualizador_Tarifas.pdf"},
+    {"nombre": "❸ Generador Tarifas Amazon", "url": "https://generarplantillatarifasamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Generación de plantillas de tarifas personalizadas para Amazon.", "pdf": "Manual_Generador_Tarifas_Amazon.pdf"}
+]
+
+# --- FLUJO SECUENCIAL 4: URLs / IMÁGENES PARA PRESTASHOP ---
+flujo4_apps = [
+    {"nombre": "❶ Extractor de URLs para PrestaShop", "url": "https://concatenarurl.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de URLs absolutas para imágenes de productos.", "pdf": "Extractor de URLs para PrestaShop.pdf"},
+    {"nombre": "❷ Actualiza URLs", "url": "https://actualizaurlsimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Edición masiva de rutas de imágenes en ficheros.", "pdf": "Actualiza URLs.pdf"},
+    {"nombre": "❸ Revisar URL Fotos", "url": "https://revisarurlimagenes.streamlit.app/", "icon": "marketplaces.svg", "desc": "Validación masiva de URLs de imágenes (Evita 404).", "pdf": "Revisar URL Fotos.pdf"}
+]
+
+# --- FLUJO SECUENCIAL 5: AUDITORÍA DE CATÁLOGO ---
+flujo5_apps = [
+    {"nombre": "❶ Comparar PS vs Amazon", "url": "https://compararpsvsamazon.streamlit.app/", "icon": "marketplaces.svg", "desc": "Auditoría de catálogo PrestaShop vs Amazon.", "pdf": "Comparar PS vs Amazon.pdf"},
+    {"nombre": "❷ Comparador Bestseller", "url": "https://comparadorbestseller.streamlit.app/", "icon": "marketplaces.svg", "desc": "Herramienta avanzada de comparación y auditoría para productos Bestseller.", "pdf": "Manual_Usuario_Comparador_Bestseller_v3.pdf"},
+    {"nombre": "❸ SKUs Faltantes Amazon", "url": "https://skusfaltantesamazon.streamlit.app/", "icon": "stockamazon.svg", "desc": "Auditoría y comparativa de productos creados para la detección de SKUs faltantes en Amazon.", "pdf": "ManualCompartivaProductosCreadosAmazonJabiruTuraco.pdf"}
+]
+
+# --- FLUJO SECUENCIAL 6: STOCK AMAZON ---
+flujo6_apps = [
+    {"nombre": "❶ Convertir Excel", "url": "https://convertirexcels.streamlit.app/", "icon": "marketplaces.svg", "desc": "Conversión de ficheros a formato .xlsx antes de gestionar el stock.", "pdf": "Convertir Excel.pdf"},
+    {"nombre": "❷ Stock Amazon", "url": "https://stockamazon.streamlit.app", "icon": "stockamazon.svg", "desc": "Gestión de stock una vez convertido el fichero a .xlsx.", "pdf": "Stock Amazon.pdf"},
+    {"nombre": "❸ Control Desactivados", "url": "https://controldesactivados.streamlit.app/", "icon": "marketplaces.svg", "desc": "Auditoría y control de activación para stock deshabilitado tras la gestión.", "pdf": "Manual_Control_Activacion_Stock.pdf"}
+]
+
+# --- FLUJO SECUENCIAL 7: ERRORES ---
+flujo7_apps = [
+    {"nombre": "❶ Errors", "url": "https://errors.streamlit.app/", "icon": "marketplaces.svg", "desc": "Analizar errores de publicación Mirakl / Marketplaces.", "pdf": "Errors.pdf"},
+    {"nombre": "❷ Errores BeezUP", "url": "https://erroresbeezup.streamlit.app/", "icon": "marketplaces.svg", "desc": "Gestor de errores de publicación específicos de BeezUP.", "pdf": "Errores BeezUP.pdf"}
+]
+
+# --- FLUJO SECUENCIAL 8: CATEGORÍAS / FEATURES PRESTASHOP ---
+flujo8_apps = [
+    {"nombre": "❶ Map Categories", "url": "https://mapcategories.streamlit.app", "icon": "mapcategories.svg", "desc": "Mapeo lógico de categorías Amazon vs PrestaShop.", "pdf": "Map Categories.pdf"},
+    {"nombre": "❷ MM Category Explorer", "url": "https://atributosmediamarkt.streamlit.app/", "icon": "marketplaces.svg", "desc": "Explorador de categorías y atributos específicos para MediaMarkt.", "pdf": "Manual_MM_Category_Explorer.pdf"},
+    {"nombre": "❸ Features PS", "url": "https://featuresps.streamlit.app", "icon": "featuresps.svg", "desc": "Creación de fichero de características técnicas PrestaShop.", "pdf": "Features PS.pdf"},
+    {"nombre": "❹ Características 2026", "url": "https://caracteristicaspsturaco2026.streamlit.app/", "icon": "featuresps.svg", "desc": "Gestión avanzada de características PrestaShop 2026.", "pdf": "Características 2026.pdf"}
+]
+
+TODOS_LOS_FLUJOS = [
+    ("Flujo de Trabajo Secuencial: Gestión de Pedidos Cecotec", flujo_apps, "flujo1"),
+    ("Flujo de Trabajo Secuencial: Plytix a PrestaShop", flujo2_apps, "flujo2"),
+    ("Flujo de Trabajo Secuencial: Tarifas", flujo3_apps, "flujo3"),
+    ("Flujo de Trabajo Secuencial: URLs e Imágenes para PrestaShop", flujo4_apps, "flujo4"),
+    ("Flujo de Trabajo Secuencial: Auditoría de Catálogo", flujo5_apps, "flujo5"),
+    ("Flujo de Trabajo Secuencial: Stock Amazon", flujo6_apps, "flujo6"),
+    ("Flujo de Trabajo Secuencial: Errores", flujo7_apps, "flujo7"),
+    ("Flujo de Trabajo Secuencial: Categorías y Features PrestaShop", flujo8_apps, "flujo8"),
 ]
 
 # Estilos CSS
@@ -168,6 +204,51 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+def render_flujo(titulo, flujo_list, key_prefix):
+    """Renderiza un bloque de flujo secuencial dentro del marco turquesa punteado."""
+    st.markdown(f'<div class="workflow-container"><div class="workflow-title">🔄 {titulo}</div>', unsafe_allow_html=True)
+
+    n = len(flujo_list)
+    col_spec, indices, arrows = [], [], []
+    for i in range(n):
+        indices.append(len(col_spec))
+        col_spec.append(3)
+        if i < n - 1:
+            arrows.append(len(col_spec))
+            col_spec.append(0.5)
+
+    cols = st.columns(col_spec)
+
+    for idx, app in enumerate(flujo_list):
+        with cols[indices[idx]]:
+            b64_icon = get_svg_base64(f"iconos/{app['icon']}")
+            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="35" style="margin-bottom:5px;"/>' if b64_icon else "📦"
+            st.markdown(f"""
+                <div class="app-card">
+                    <div>
+                        {icon_html}
+                        <div class="card-title">{app['nombre']}</div>
+                        <div class="card-desc">{app['desc']}</div>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+
+            pdf_path = f"Estructura PDF/{app['pdf']}"
+            if os.path.exists(pdf_path):
+                with open(pdf_path, "rb") as f:
+                    st.download_button(label="📂 Manual", data=f, file_name=app['pdf'], mime="application/pdf", key=f"{key_prefix}_dl_{idx}")
+            else:
+                st.button("📄 Sin Manual", disabled=True, key=f"{key_prefix}_none_{idx}")
+
+            st.link_button("Abrir Aplicación", app['url'], use_container_width=True)
+
+    for arr_idx in arrows:
+        with cols[arr_idx]:
+            st.markdown('<div class="flow-arrow">➔</div>', unsafe_allow_html=True)
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
+
 st.title("🚀 Panel Central de Aplicaciones Turaco")
 
 st.markdown("""
@@ -196,92 +277,29 @@ st.markdown('<div style="margin-top: 15px;"></div>', unsafe_allow_html=True)
 
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# --- BLOQUE VISUAL DE FLUJO SECUENCIAL (Solo si no se busca) ---
+# --- BLOQUES VISUALES DE FLUJOS SECUENCIALES (Solo si no se busca) ---
 if not search_query:
-    st.markdown('<div class="workflow-container"><div class="workflow-title">🔄 Flujo de Trabajo Secuencial: Gestión de Pedidos Cecotec</div>', unsafe_allow_html=True)
-    
-    f_cols = st.columns([3, 0.5, 3, 0.5, 3])
-    indices_flujo = [0, 2, 4]
-    arrows_flujo = [1, 3]
-
-    for idx, app in enumerate(flujo_apps):
-        with f_cols[indices_flujo[idx]]:
-            b64_icon = get_svg_base64(f"iconos/{app['icon']}")
-            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="35" style="margin-bottom:5px;"/>' if b64_icon else "📦"
-            st.markdown(f"""
-                <div class="app-card">
-                    <div>
-                        {icon_html}
-                        <div class="card-title">{app['nombre']}</div>
-                        <div class="card-desc">{app['desc']}</div>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
-            
-            pdf_path = f"Estructura PDF/{app['pdf']}"
-            if os.path.exists(pdf_path):
-                with open(pdf_path, "rb") as f:
-                    st.download_button(label="📂 Manual", data=f, file_name=app['pdf'], mime="application/pdf", key=f"flow_dl_{idx}")
-            else:
-                st.button("📄 Sin Manual", disabled=True, key=f"flow_none_{idx}")
-                
-            st.link_button("Abrir Aplicación", app['url'], use_container_width=True)
-
-    for arr_idx in arrows_flujo:
-        with f_cols[arr_idx]:
-            st.markdown('<div class="flow-arrow">➔</div>', unsafe_allow_html=True)
-            
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # --- BLOQUE VISUAL DE FLUJO SECUENCIAL: PLYTIX -> PRESTASHOP ---
-    st.markdown('<div class="workflow-container"><div class="workflow-title">🔄 Flujo de Trabajo Secuencial: Creación de novedades en PrestaShop</div>', unsafe_allow_html=True)
-
-    f2_cols = st.columns([3, 0.5, 3])
-    indices_flujo2 = [0, 2]
-    arrows_flujo2 = [1]
-
-    for idx, app in enumerate(flujo2_apps):
-        with f2_cols[indices_flujo2[idx]]:
-            b64_icon = get_svg_base64(f"iconos/{app['icon']}")
-            icon_html = f'<img src="data:image/svg+xml;base64,{b64_icon}" width="35" style="margin-bottom:5px;"/>' if b64_icon else "📦"
-            st.markdown(f"""
-                <div class="app-card">
-                    <div>
-                        {icon_html}
-                        <div class="card-title">{app['nombre']}</div>
-                        <div class="card-desc">{app['desc']}</div>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
-
-            pdf_path = f"Estructura PDF/{app['pdf']}"
-            if os.path.exists(pdf_path):
-                with open(pdf_path, "rb") as f:
-                    st.download_button(label="📂 Manual", data=f, file_name=app['pdf'], mime="application/pdf", key=f"flow2_dl_{idx}")
-            else:
-                st.button("📄 Sin Manual", disabled=True, key=f"flow2_none_{idx}")
-
-            st.link_button("Abrir Aplicación", app['url'], use_container_width=True)
-
-    for arr_idx in arrows_flujo2:
-        with f2_cols[arr_idx]:
-            st.markdown('<div class="flow-arrow">➔</div>', unsafe_allow_html=True)
-
-    st.markdown('</div>', unsafe_allow_html=True)
+    for titulo, flujo_list, key_prefix in TODOS_LOS_FLUJOS:
+        render_flujo(titulo, flujo_list, key_prefix)
 
 # --- ÍNDICE RÁPIDO ---
-todas_las_apps = sorted(apps + flujo_apps + flujo2_apps, key=lambda k: k['nombre'].replace("❶ ", "").replace("❷ ", "").replace("❸ ", ""))
+todas_las_apps = sorted(
+    apps + flujo_apps + flujo2_apps + flujo3_apps + flujo4_apps + flujo5_apps + flujo6_apps + flujo7_apps + flujo8_apps,
+    key=lambda k: k['nombre'].replace("❶ ", "").replace("❷ ", "").replace("❸ ", "").replace("❹ ", "")
+)
 
 if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
-        df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a.get('cat', 'Flujo Cecotec'), "Función": a['desc']} for a in todas_las_apps])
+        df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a.get('cat', 'Flujo'), "Función": a['desc']} for a in todas_las_apps])
         st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 # --- FILTRADO Y MESH GENERAL ---
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower() or search_query in app["cat"].lower()]
-flujo_filtrado = [app for app in flujo_apps if search_query and (search_query in app["nombre"].lower() or search_query in app["desc"].lower())]
-flujo2_filtrado = [app for app in flujo2_apps if search_query and (search_query in app["nombre"].lower() or search_query in app["desc"].lower())]
-resultados_totales = apps_filtradas + flujo_filtrado + flujo2_filtrado
+
+resultados_totales = list(apps_filtradas)
+if search_query:
+    for _, flujo_list, _ in TODOS_LOS_FLUJOS:
+        resultados_totales += [app for app in flujo_list if search_query in app["nombre"].lower() or search_query in app["desc"].lower()]
 
 st.markdown("---")
 
