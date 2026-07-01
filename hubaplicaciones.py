@@ -52,14 +52,14 @@ apps = [
     {"nombre": "Variaciones Cdiscount", "url": "https://variacionescdiscount.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generador de variaciones específicas para Cdiscount.", "color": "#FAF9F5", "cat": "Catálogo", "pdf": "Variaciones Cdiscount.pdf"}
 ]
 
-# --- FLUJO SECUENCIAL CECOPARTNERS ---
+# --- FLUJO SECUENCIAL Gestión de pedidos ---
 flujo_apps = [
     {"nombre": "❶ Volcar Pedidos Cecotec", "url": "https://volcarpedidos.streamlit.app/", "icon": "marketplaces.svg", "desc": "Automatización para el volcado masivo e integración de pedidos.", "pdf": "Manual_Usuario_Volcar_Pedidos_Cecotec.pdf"},
     {"nombre": "❷ Buscar Sustituto", "url": "https://buscarsustituto.streamlit.app/", "icon": "marketplaces.svg", "desc": "Localización y asignación de referencias alternativas de stock.", "pdf": "Buscar_Sustituto.pdf"},
     {"nombre": "❸ Borradores Cecopartners", "url": "https://borradorescecopartners.streamlit.app/", "icon": "marketplaces.svg", "desc": "Generación final y carga de borradores en la plataforma Cecopartners.", "pdf": "Borradores_Cecopartners.pdf"}
 ]
 
-# --- FLUJO SECUENCIAL PLYTIX -> PRESTASHOP ---
+# --- FLUJO SECUENCIAL Creación de novedades en PrestaShop ---
 flujo2_apps = [
         {"nombre": "❷ PS Bridge", "url": "https://ps-bridge.streamlit.app", "icon": "ps-bridge.svg", "desc": "Fichero de subida de novedades a PrestaShop.", "pdf": "PS Bridge.pdf"},
         {"nombre": "❶ Plytix Downloader", "url": "https://descargaspim.streamlit.app/", "icon": "marketplaces.svg", "desc": "Descarga masiva de activos y datos desde el PIM Plytix.", "pdf": "manual_plytix_downloader.pdf"}
