@@ -234,7 +234,7 @@ if not search_query:
     st.markdown('</div>', unsafe_allow_html=True)
 
     # --- BLOQUE VISUAL DE FLUJO SECUENCIAL: PLYTIX -> PRESTASHOP ---
-    st.markdown('<div class="workflow-container"><div class="workflow-title">🔄 Flujo de Trabajo Secuencial: Plytix a PrestaShop</div>', unsafe_allow_html=True)
+    st.markdown('<div class="workflow-container"><div class="workflow-title">🔄 Flujo de Trabajo Secuencial: Creación de novedades en PrestaShop</div>', unsafe_allow_html=True)
 
     f2_cols = st.columns([3, 0.5, 3])
     indices_flujo2 = [0, 2]
