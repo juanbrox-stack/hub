@@ -277,12 +277,7 @@ st.markdown('<div style="margin-top: 15px;"></div>', unsafe_allow_html=True)
 
 search_query = st.text_input("🔍 Buscar aplicación...", "").lower()
 
-# --- BLOQUES VISUALES DE FLUJOS SECUENCIALES (Solo si no se busca) ---
-if not search_query:
-    for titulo, flujo_list, key_prefix in TODOS_LOS_FLUJOS:
-        render_flujo(titulo, flujo_list, key_prefix)
-
-# --- ÍNDICE RÁPIDO ---
+# --- ÍNDICE RÁPIDO (justo debajo del buscador) ---
 todas_las_apps = sorted(
     apps + flujo_apps + flujo2_apps + flujo3_apps + flujo4_apps + flujo5_apps + flujo6_apps + flujo7_apps + flujo8_apps,
     key=lambda k: k['nombre'].replace("❶ ", "").replace("❷ ", "").replace("❸ ", "").replace("❹ ", "")
@@ -292,6 +287,11 @@ if not search_query:
     with st.expander("📊 Índice rápido de acceso directo", expanded=False):
         df_index = pd.DataFrame([{"Aplicación": f'<a href="{a["url"]}" target="_blank">{a["nombre"]}</a>', "Categoría": a.get('cat', 'Flujo'), "Función": a['desc']} for a in todas_las_apps])
         st.write(df_index.to_html(escape=False, index=False), unsafe_allow_html=True)
+
+# --- BLOQUES VISUALES DE FLUJOS SECUENCIALES (Solo si no se busca) ---
+if not search_query:
+    for titulo, flujo_list, key_prefix in TODOS_LOS_FLUJOS:
+        render_flujo(titulo, flujo_list, key_prefix)
 
 # --- FILTRADO Y MESH GENERAL ---
 apps_filtradas = [app for app in apps if search_query in app["nombre"].lower() or search_query in app["desc"].lower() or search_query in app["cat"].lower()]
